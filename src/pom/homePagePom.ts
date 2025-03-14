@@ -1,6 +1,6 @@
 import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, Page, expect} from "@playwright/test";
 import { homePageSel } from '../../data/selectors/homePageSel'
-import { getRandomInt } from '../utils/randomNumbers'
+import { getRandomInt, selectRandomValueFromArray } from '../utils/randomValues'
 
 
 // udelat v dalsich krocich konfiguraci prostredi (to se dela v test souboru)
@@ -34,10 +34,12 @@ export class HomePagePom {
       await this._page.locator(`a[href="prod.html?idp_=${randomNumber}"]`).first().click()
     })
   }
-/* 
-  public async displayCategory(category: string){
+ 
+  public async displayCategory(){
     await this._test.step('Display one of the category', async() =>{
-      await this._page.locator().first().click()
+      const allCategories = await this._page.locator(`a[onclick*="byCat"]`).allInnerTexts()
+      const category = selectRandomValueFromArray(allCategories)
+      await this._page.getByText(category).first().click()
     })
-  } */
+  } 
 }
