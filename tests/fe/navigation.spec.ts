@@ -2,7 +2,7 @@ import { test } from '@playwright/test'
 import { HomePagePom } from '../../src/pom/homePagePom'
 import { ContactPom } from '../../src/pom/contactPom'
 import { AboutUsPom } from '../../src/pom/aboutUsPom'
-import { CartPom } from '../../src/pom/cartPom'
+import { CartOrderPom } from '../../src/pom/cartOrderPom'
 import { LoginPom } from '../../src/pom/loginPom'
 import { SignUpPom } from '../../src/pom/signUpPom'
 
@@ -30,7 +30,7 @@ test.describe('Navigation tests', ()=>{
 
     test('Navigate to cart', async({page}) =>{
         const homePage = new HomePagePom(page,test)
-        const cart = new CartPom(page,test)
+        const cart = new CartOrderPom(page,test)
 
         await homePage.navigateToHomePage()
         await cart.displayCart()

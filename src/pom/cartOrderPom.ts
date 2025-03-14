@@ -3,7 +3,7 @@ import { cartSel } from '../../data/selectors/cartSel'
 
 const url = 'https://www.demoblaze.com/cart.html#'
 
-export class CartPom {
+export class CartOrderPom {
     protected _page: Page
     protected _test: TestType <PlaywrightTestArgs & PlaywrightTestOptions, PlaywrightWorkerArgs & PlaywrightWorkerOptions>
 
