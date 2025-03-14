@@ -1,7 +1,7 @@
 import { test } from '@playwright/test'
 import { HomePagePom } from '../../src/pom/homePagePom'
 import { LoginPom } from '../../src/pom/loginPom'
-import { User } from '../../src/types/userDataType'
+import { User } from '../types/userDataTypes'
 
 const jsonData = JSON.parse(JSON.stringify(require('../data/user/userData.json')))
 const user = jsonData as User
@@ -63,8 +63,6 @@ test.describe('Login tests', () => {
         await homePage.navigateToHomePage()
         await login.pageDialogOn()
         await login.displayLoginForm()
-        await login.fillUsername("")
-        await login.fillPassword("")
         await login.clickLoginButton()
         await login.pageDialogOff()
     })

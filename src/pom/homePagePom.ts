@@ -33,7 +33,6 @@ export class HomePagePom {
       const randomNumber = getRandomInt(1,totalNumberOfElements)
       await this._page.waitForLoadState('load')
       await this._page.locator(`a[href="prod.html?idp_=${randomNumber}"]`).first().click()
-      await this._page.pause()
     })
   }
  
