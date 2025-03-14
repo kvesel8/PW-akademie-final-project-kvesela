@@ -1,7 +1,7 @@
 import { test } from '@playwright/test'
-import { SignUpPom } from '../src/pom/signUpPom'
-import { HomePagePom } from '../src/pom/homePagePom'
-import { User } from '../src/types/userDataType'
+import { SignUpPom } from '../../src/pom/signUpPom'
+import { HomePagePom } from '../../src/pom/homePagePom'
+import { User } from '../../src/types/userDataType'
 
 const jsonData = JSON.parse(JSON.stringify(require("../data/user/userData.json")))
 const user = jsonData as User
