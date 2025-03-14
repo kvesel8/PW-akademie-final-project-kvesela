@@ -29,17 +29,20 @@ export class HomePagePom {
 
   public async displayItemDetail(){
     await this._test.step('Display Item detail', async() => {
-      const totalNumberOfElements = await this._page.locator(`a[href*="prod.html?idp_="]`).count()
+      const totalNumberOfElements = await this._page.locator(`a[href="prod.html?idp_=\.*"]`).count()
       const randomNumber = getRandomInt(1,totalNumberOfElements)
+      await this._page.waitForLoadState('load')
       await this._page.locator(`a[href="prod.html?idp_=${randomNumber}"]`).first().click()
+      await this._page.pause()
     })
   }
  
   public async displayCategory(){
     await this._test.step('Display one of the category', async() =>{
-      const allCategories = await this._page.locator(`a[onclick*="byCat"]`).allInnerTexts()
+      const allCategories = await this._page.locator(`a[onclick="byCat."]`).allInnerTexts()
       const category = selectRandomValueFromArray(allCategories)
-      await this._page.getByText(category).first().click()
+      await this._page.getByText(category).first().click({timeout:10_000})
+      await this._page.pause()
     })
   } 
 }

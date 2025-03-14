@@ -5,7 +5,7 @@ import { CartOrderPom } from '../../src/pom/cartOrderPom'
 
 test.describe('Cart tests and place order tests', () =>{
 
-    test.only('Add item in cart',{tag:'@add_to_cart'}, async({page}) => {
+    test('Add item in cart',{tag:'@add_to_cart'}, async({page}) => {
         const homePage = new HomePagePom(page,test)
         const cartOrder = new CartOrderPom(page,test)
 

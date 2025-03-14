@@ -50,8 +50,22 @@ test.describe('Navigation tests', ()=>{
         const signUp = new SignUpPom(page,test)
         
         await homePage.navigateToHomePage()
-        signUp.displaySignUpForm()
-        signUp.clickCloseButton()
+        await signUp.displaySignUpForm()
+        await signUp.clickCloseButton()
+    })
+
+    test('Select a product category', async({page}) => {
+        const homePage = new HomePagePom(page, test)
+
+        await homePage.navigateToHomePage()
+        await homePage.displayCategory()
+    })
+
+    test.only('Display detail of an product', async({page}) => {
+        const homePage = new HomePagePom(page, test)
+
+        await homePage.navigateToHomePage()
+        await homePage.displayItemDetail()
     })
 })
 
