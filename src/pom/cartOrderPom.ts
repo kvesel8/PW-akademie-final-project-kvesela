@@ -21,4 +21,11 @@ export class CartOrderPom {
             await expect(this._page).toHaveURL(url)
         })
     }
+
+    public async addItemToCart(){
+        await this._test.step('Add item to cart', async() =>{
+            await this._page.getByText(cartSel.ADDTOCART_BUTTON).first().click()
+            await this._page.pause()
+        })
+    }
 }

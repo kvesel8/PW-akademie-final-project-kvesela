@@ -1,3 +1,4 @@
 export const cartSel = {
-    CART:'Cart'
+    CART:'Cart',
+    ADDTOCART_BUTTON: 'Add to cart'
 }
