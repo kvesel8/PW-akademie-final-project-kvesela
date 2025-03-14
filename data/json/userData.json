@@ -1,0 +1,16 @@
+{
+    "validUsername_validPassword":{
+        "username": "Anastasia",
+        "password": "dymitrij"
+    },
+    
+    "invalidUserName_validPassword":{
+        "username": "Charlie",
+        "password": "Banana king"
+    },
+
+    "invalidPassword_valid_username":{
+        "username": "Starfish",
+        "password": "IwillLoveYou4ever"
+    }
+}
