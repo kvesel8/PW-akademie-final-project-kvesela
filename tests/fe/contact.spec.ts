@@ -13,13 +13,13 @@ test.describe('Contact form tests', () => {
         const contact = new ContactPom(page, test)
 
         await homePage.navigateToHomePage()
-        await contact.pageDialogOn()
+        await homePage.pageDialogOn()
         await contact.displayContactForm()
         await contact.fillContactEmail(contactData.contactEmail)
         await contact.fillContactName(contactData.contactName)
         await contact.fillMesage(contactData.message)
         await contact.clickSendMessageButton()
-        await contact.pageDialogOff()
+        await homePage.pageDialogOff()
     })
 
     test('Send contact form with no message', async({page}) =>{
@@ -27,25 +27,25 @@ test.describe('Contact form tests', () => {
         const contact = new ContactPom(page, test)
 
         await homePage.navigateToHomePage()
-        await contact.pageDialogOn()
+        await homePage.pageDialogOn()
         await contact.displayContactForm()
         await contact.fillContactEmail(contactData.contactEmail)
         await contact.fillContactName(contactData.contactName)
         await contact.clickSendMessageButton()
-        await contact.pageDialogOff()
+        await homePage.pageDialogOff()
     })
 
-    test('Send contatct form without contact email', async({page}) =>{
+    test('Send contact form without contact email', async({page}) =>{
         const homePage = new HomePagePom(page, test)
         const contact = new ContactPom(page, test)
         
         await homePage.navigateToHomePage()
-        await contact.pageDialogOn()
+        await homePage.pageDialogOn()
         await contact.displayContactForm()
         await contact.fillContactName(contactData.contactName)
         await contact.fillMesage(contactData.message)
         await contact.clickSendMessageButton()
-        await contact.pageDialogOff()
+        await homePage.pageDialogOff()
     })
 
     test('Send empty contact form', async({page}) => {
@@ -53,10 +53,10 @@ test.describe('Contact form tests', () => {
         const contact = new ContactPom(page, test)
 
         await homePage.navigateToHomePage()
-        await contact.pageDialogOn()
+        await homePage.pageDialogOn()
         await contact.displayContactForm()
         await contact.clickSendMessageButton()
-        await contact.pageDialogOff()
+        await homePage.pageDialogOff()
     })
 })
 

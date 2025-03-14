@@ -1,4 +1,4 @@
-export const cartSel = {
+export const cartOrderSel = {
     CART:'Cart',
     ADDTOCART_BUTTON: 'Add to cart',
     DELETE_BUTTON: 'Delete',

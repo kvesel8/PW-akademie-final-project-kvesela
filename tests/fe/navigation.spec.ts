@@ -61,7 +61,7 @@ test.describe('Navigation tests', ()=>{
         await homePage.displayCategory()
     })
 
-    test.only('Display detail of an product', async({page}) => {
+    test('Display detail of an product', async({page}) => {
         const homePage = new HomePagePom(page, test)
 
         await homePage.navigateToHomePage()

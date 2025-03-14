@@ -25,12 +25,12 @@ test.describe('Login tests', () => {
         const login = new LoginPom(page, test)
 
         await homePage.navigateToHomePage()
-        await login.pageDialogOn()
+        await homePage.pageDialogOn()
         await login.displayLoginForm()
         await login.fillUsername(user.invalidUserName_validPassword.username)
         await login.fillPassword(user.invalidUserName_validPassword.password)
         await login.clickLoginButton()
-        await login.pageDialogOff()
+        await homePage.pageDialogOff()
     })
 
     test('Login with invalid password and valid username', async({page}) => {
@@ -38,12 +38,12 @@ test.describe('Login tests', () => {
         const login = new LoginPom(page, test)
         
         await homePage.navigateToHomePage()
-        await login.pageDialogOn()
+        await homePage.pageDialogOn()
         await login.displayLoginForm()
         await login.fillUsername(user.invalidPassword_valid_username.username)
         await login.fillPassword(user.invalidPassword_valid_username.password)
         await login.clickLoginButton()
-        await login.pageDialogOff()
+        await homePage.pageDialogOff()
 
     })
 
@@ -52,10 +52,10 @@ test.describe('Login tests', () => {
         const login = new LoginPom(page, test)
 
         await homePage.navigateToHomePage()
-        await login.pageDialogOn()
+        await homePage.pageDialogOn()
         await login.displayLoginForm()
         await login.clickLoginButton()
-        await login.pageDialogOff()
+        await homePage.pageDialogOff()
     })
 
 })
