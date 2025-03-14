@@ -9,15 +9,6 @@ const user = jsonData as User
 
 test.describe('Login tests', () => {
 
-    test('Display and close login form', async({page}) =>{
-        const homePage = new HomePagePom(page, test)
-        const login = new LoginPom(page, test)
-        
-        await homePage.navigateToHomePage()
-        await login.displayLoginForm()
-        await login.clickCloseButton()
-    })
-
     test('Login with correct username and password', async({page}) => {
         const homePage = new HomePagePom(page, test)
         const login = new LoginPom(page, test)

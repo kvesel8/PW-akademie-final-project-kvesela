@@ -26,7 +26,7 @@ export class HomePagePom {
       await expect(this._page).toHaveURL(this._url);
     });
   }
-
+  //klika se furt na prvni polozku - chyba v selektoru - opravit
   public async displayItemDetail(){
     await this._test.step('Display Item detail', async() => {
       const totalNumberOfElements = await this._page.locator(`a[href="prod.html?idp_=\.*"]`).count()
@@ -44,4 +44,21 @@ export class HomePagePom {
       await this._page.pause()
     })
   } 
+
+  public async pageDialogOn(){
+    await this._test.step('Start to listen to page dialog', async() => {
+        this._page.on('dialog', async(dialog) =>{
+            console.log(dialog.message())
+            await dialog.accept()
+        })
+    })
+}
+
+public async pageDialogOff(){
+    await this._test.step('Stop to listen to page dialog', async() => {
+        this._page.off('dialog', async() => {
+            console.log('Dialog closed')
+        })
+    })
+}
 }

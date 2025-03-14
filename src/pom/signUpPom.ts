@@ -42,22 +42,6 @@ export class SignUpPom {
             await this._page.getByLabel(signUpSel.SIGNUP_BUTTON).getByText(signUpSel.CLOSE_BUTTON).click()
         })
     }
-
-    public async pageDialogOn(){
-        await this._test.step('Start to listen to page dialog', async() => {
-            this._page.on('dialog', async(dialog) =>{
-                console.log(dialog.message())
-                await dialog.accept()
-            })
-        })
-    }
-
-    public async pageDialogOff(){
-        await this._test.step('Stop to listen to page dialog', async() => {
-            this._page.off('dialog', async() => {
-                console.log('Dialog closed')
-            })
-        })
-    }
     
+    //pridat funkce na overeni zobrazeni spravne zpravy v modalnim okne prohlizece
 }

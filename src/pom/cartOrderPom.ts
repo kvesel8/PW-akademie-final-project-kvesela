@@ -58,4 +58,6 @@ export class CartOrderPom {
             await this._page.locator(cartSel.PURCHASE_BUTTON).first().click()
         })
     }
+
+    //pridat funkce na overeni zobrazeni spravne zpravy v modalnim okne prohlizece
 }
