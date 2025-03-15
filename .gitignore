@@ -3,6 +3,7 @@ node_modules/
 .vscode
 .DS_Store
 dist/
+deffer/
 
 # Test results
 playwright-report/

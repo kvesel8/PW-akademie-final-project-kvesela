@@ -45,5 +45,12 @@ export class LoginPom {
         })
     }
 
+    public async logOut(){
+        await this._test.step('Log out user', async() => {
+            await expect(this._page.locator(loginSel.LOGOUT)).toBeVisible()
+            await this._page.locator(loginSel.LOGOUT).click()
+        })
+    }
+
     //pridat funkce na overeni zobrazeni spravne zpravy v modalnim okne prohlizece
 }

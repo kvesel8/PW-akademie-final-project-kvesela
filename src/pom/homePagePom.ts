@@ -1,5 +1,4 @@
 import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, Page, expect} from "@playwright/test";
-import { homePageSel } from '../../data/selectors/homePageSel'
 import { getRandomInt, selectRandomValueFromArray } from '../utils/randomValues'
 
 
@@ -54,11 +53,11 @@ export class HomePagePom {
     })
 }
 
-public async pageDialogOff(){
+  public async pageDialogOff(){
     await this._test.step('Stop to listen to page dialog', async() => {
         this._page.off('dialog', async() => {
             console.log('Dialog closed')
         })
     })
-}
+  }
 }

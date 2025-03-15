@@ -3,5 +3,6 @@ export const loginSel = {
     USERNAME_FIELD: 'input[id="loginusername"]',
     PASSWORD_FIELD: 'input[id="loginpassword"]',
     LOGIN_BUTTON: 'Log in',
-    CLOSE_BUTTON: 'Close'
+    CLOSE_BUTTON: 'Close',
+    LOGOUT: 'a[id="logout2"]'
 }
