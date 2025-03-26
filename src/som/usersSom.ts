@@ -1,4 +1,4 @@
-import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, APIRequest, APIResponse} from '@playwright/test'
+import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, APIResponse} from '@playwright/test'
 
 export class UsersSom {
 
@@ -11,5 +11,21 @@ export class UsersSom {
     ) {
         this._apiResponse = apiResponse
         this._test = test
+    }
+
+    public async getListOfAllUsers(){
+
+    }
+
+    public async createUser(){
+
+    }
+
+    public async updateUser(){
+
+    }
+
+    public async deleteUser(){
+        
     }
 }
