@@ -21,6 +21,10 @@ export class UsersSom {
 
     }
 
+    public async getUserById(){
+        
+    }
+
     public async updateUser(){
 
     }

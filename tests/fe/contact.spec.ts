@@ -1,7 +1,7 @@
 import { test } from '@playwright/test'
 import { HomePagePom } from '../../src/pom/homePagePom'
 import { ContactPom } from '../../src/pom/contactPom'
-import { contactDataType } from '../../src/types/contactDataTypes'
+import { contactDataType } from '../types/fe/contactDataTypes'
 
 const jsonData = JSON.parse(JSON.stringify(require('../data/json/contactData.json')))
 const contactData = jsonData as contactDataType

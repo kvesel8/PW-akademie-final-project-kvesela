@@ -1,7 +1,7 @@
 import { test } from '@playwright/test'
 import { SignUpPom } from '../../src/pom/signUpPom'
 import { HomePagePom } from '../../src/pom/homePagePom'
-import { User } from '../types/userDataTypes'
+import { User } from '../types/fe/userDataTypes'
 import { generateUsername, generatePassword } from '../../src/utils/randomValues'
 
 
