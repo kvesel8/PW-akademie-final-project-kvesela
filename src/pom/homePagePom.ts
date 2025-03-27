@@ -19,8 +19,8 @@ export class HomePagePom {
 
   public async navigateToHomePage() {
     await this._test.step("Navigate to home page", async () => {
-      await this._page.goto(endpointUrl);
-      await expect(this._page).toHaveURL(endpointUrl);
+      await this._page.goto(this._testConfig.endpointUrl);
+      await expect(this._page).toHaveURL(this._testConfig.endpointUrl);
     });
   }
   //klika se furt na prvni polozku - chyba v selektoru - opravit
