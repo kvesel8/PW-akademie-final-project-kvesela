@@ -3,7 +3,7 @@ import { HomePagePom } from '../../src/pom/homePagePom'
 import { LoginPom } from '../../src/pom/loginPom'
 import { User } from '../types/fe/userDataTypes'
 import dotenv from 'dotenv'
-import { testConfigType } from '../../src/types/fe/testConfigType'
+import { testConfigType, testSecretsType } from '../../src/types/fe/globalTypes'
 
 
 dotenv.config({ override: true})
@@ -14,12 +14,16 @@ const testConfig: testConfigType = require(`../../data/envs/config_${env}.json`)
 const jsonData = JSON.parse(JSON.stringify(require('../data/user/userData.json')))
 const user = jsonData as User
 
+const testSecrets: testSecretsType = {
+    username: process.env.UNAME,
+    password: process.env.PWORD
+}
 
 test.describe('Login tests', () => {
 
     test('Login with correct username and password', async({page}) => {
         const homePage = new HomePagePom(page, test, testConfig)
-        const login = new LoginPom(page, test)
+        const login = new LoginPom(page, test, testSecrets)
         
         await homePage.navigateToHomePage()
         await login.displayLoginForm()
@@ -30,7 +34,7 @@ test.describe('Login tests', () => {
 
     test('Login with invalid username and valid password', async({page}) => {
         const homePage = new HomePagePom(page, test, testConfig)
-        const login = new LoginPom(page, test)
+        const login = new LoginPom(page, test, testSecrets)
 
         await homePage.navigateToHomePage()
         await homePage.pageDialogOn()
@@ -43,7 +47,7 @@ test.describe('Login tests', () => {
 
     test('Login with invalid password and valid username', async({page}) => {
         const homePage = new HomePagePom(page, test, testConfig)
-        const login = new LoginPom(page, test)
+        const login = new LoginPom(page, test, testSecrets)
         
         await homePage.navigateToHomePage()
         await homePage.pageDialogOn()
@@ -57,7 +61,7 @@ test.describe('Login tests', () => {
 
     test('Login with no username and password', async({page}) => {
         const homePage = new HomePagePom(page, test, testConfig)
-        const login = new LoginPom(page, test)
+        const login = new LoginPom(page, test, testSecrets)
 
         await homePage.navigateToHomePage()
         await homePage.pageDialogOn()

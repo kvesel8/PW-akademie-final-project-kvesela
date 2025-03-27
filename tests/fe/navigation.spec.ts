@@ -6,7 +6,7 @@ import { CartOrderPom } from '../../src/pom/cartOrderPom'
 import { LoginPom } from '../../src/pom/loginPom'
 import { SignUpPom } from '../../src/pom/signUpPom'
 import dotenv from 'dotenv'
-import { testConfigType } from '../../src/types/fe/testConfigType'
+import { testConfigType, testSecretsType } from '../../src/types/fe/globalTypes'
 
 
 dotenv.config({ override: true})
@@ -14,6 +14,10 @@ dotenv.config({ override: true})
 const env = process.env.ENV || 'dev'
 const testConfig: testConfigType = require(`../../data/envs/config_${env}.json`)
 
+const testSecrets: testSecretsType = {
+    username: process.env.UNAME,
+    password: process.env.PWORD
+}
 
 test.describe('Navigation tests', ()=>{
 
@@ -45,7 +49,7 @@ test.describe('Navigation tests', ()=>{
 
     test('Navigate to login form', async({page}) =>{
         const homePage = new HomePagePom(page, test, testConfig)
-        const login = new LoginPom(page,test)
+        const login = new LoginPom(page, test, testSecrets )
 
         await homePage.navigateToHomePage()
         await login.displayLoginForm()
@@ -54,7 +58,7 @@ test.describe('Navigation tests', ()=>{
 
     test('Navigate to sign up form', async({page}) =>{
         const homePage = new HomePagePom(page, test, testConfig)
-        const signUp = new SignUpPom(page,test)
+        const signUp = new SignUpPom(page,test, testSecrets)
         
         await homePage.navigateToHomePage()
         await signUp.displaySignUpForm()

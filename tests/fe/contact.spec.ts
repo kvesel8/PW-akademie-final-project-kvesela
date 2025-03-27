@@ -3,7 +3,7 @@ import { HomePagePom } from '../../src/pom/homePagePom'
 import { ContactPom } from '../../src/pom/contactPom'
 import { contactDataType } from '../types/fe/contactDataTypes'
 import dotenv from 'dotenv'
-import { testConfigType } from '../../src/types/fe/testConfigType'
+import { testConfigType } from '../../src/types/fe/globalTypes'
 
 
 dotenv.config({ override: true})

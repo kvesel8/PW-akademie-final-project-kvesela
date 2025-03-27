@@ -3,7 +3,7 @@ import { HomePagePom } from '../../src/pom/homePagePom'
 import { CartOrderPom } from '../../src/pom/cartOrderPom'
 import { placeOrderFormType } from '../types/fe/placeOrderFormTypes'
 import dotenv from 'dotenv'
-import { testConfigType } from '../../src/types/fe/testConfigType'
+import { testConfigType } from '../../src/types/fe/globalTypes'
 
 
 dotenv.config({ override: true})

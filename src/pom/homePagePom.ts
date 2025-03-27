@@ -1,6 +1,6 @@
 import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, Page, expect} from "@playwright/test";
 import { getRandomInt, selectRandomValueFromArray } from '../utils/randomValues'
-import { testConfigType } from "../../src/types/fe/testConfigType";
+import { testConfigType } from "../../src/types/fe/globalTypes";
 
 export class HomePagePom {
   protected _page: Page;

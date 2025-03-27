@@ -1,18 +1,21 @@
 import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, Page, expect } from '@playwright/test'
 import { loginSel } from '../../data/selectors/loginSel'
+import { testSecretsType } from '../../src/types/fe/globalTypes'
 
 
 export class LoginPom {
     protected _page: Page
     protected _test: TestType <PlaywrightTestArgs & PlaywrightTestOptions, PlaywrightWorkerArgs & PlaywrightWorkerOptions>
-    protected _url: string
+    protected _testSecret: testSecretsType
 
     constructor (
         page:Page,
-        test: TestType <PlaywrightTestArgs & PlaywrightTestOptions, PlaywrightWorkerArgs & PlaywrightWorkerOptions>
+        test: TestType <PlaywrightTestArgs & PlaywrightTestOptions, PlaywrightWorkerArgs & PlaywrightWorkerOptions>,
+        testSecret: testSecretsType
     ) {
         this._page = page
         this._test = test
+        this._testSecret = testSecret
     }
 
     public async displayLoginForm(){
