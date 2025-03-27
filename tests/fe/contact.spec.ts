@@ -2,6 +2,14 @@ import { test } from '@playwright/test'
 import { HomePagePom } from '../../src/pom/homePagePom'
 import { ContactPom } from '../../src/pom/contactPom'
 import { contactDataType } from '../types/fe/contactDataTypes'
+import dotenv from 'dotenv'
+import { testConfigType } from '../../src/types/fe/testConfigType'
+
+
+dotenv.config({ override: true})
+
+const env = process.env.ENV || 'dev'
+const testConfig: testConfigType = require(`../../data/envs/config_${env}.json`)
 
 const jsonData = JSON.parse(JSON.stringify(require('../data/json/contactData.json')))
 const contactData = jsonData as contactDataType
@@ -9,7 +17,7 @@ const contactData = jsonData as contactDataType
 test.describe('Contact form tests', () => {
    
    test('Fill contact form and send message', async({page}) =>{
-        const homePage = new HomePagePom(page, test)
+        const homePage = new HomePagePom(page, test, testConfig)
         const contact = new ContactPom(page, test)
 
         await homePage.navigateToHomePage()
@@ -23,7 +31,7 @@ test.describe('Contact form tests', () => {
     })
 
     test('Send contact form with no message', async({page}) =>{
-        const homePage = new HomePagePom(page, test)
+        const homePage = new HomePagePom(page, test, testConfig)
         const contact = new ContactPom(page, test)
 
         await homePage.navigateToHomePage()
@@ -36,7 +44,7 @@ test.describe('Contact form tests', () => {
     })
 
     test('Send contact form without contact email', async({page}) =>{
-        const homePage = new HomePagePom(page, test)
+        const homePage = new HomePagePom(page, test, testConfig)
         const contact = new ContactPom(page, test)
         
         await homePage.navigateToHomePage()
@@ -49,7 +57,7 @@ test.describe('Contact form tests', () => {
     })
 
     test('Send empty contact form', async({page}) => {
-        const homePage = new HomePagePom(page, test)
+        const homePage = new HomePagePom(page, test, testConfig)
         const contact = new ContactPom(page, test)
 
         await homePage.navigateToHomePage()

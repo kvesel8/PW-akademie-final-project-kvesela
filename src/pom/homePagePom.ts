@@ -1,28 +1,26 @@
 import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, Page, expect} from "@playwright/test";
 import { getRandomInt, selectRandomValueFromArray } from '../utils/randomValues'
-
-
-// udelat v dalsich krocich konfiguraci prostredi (to se dela v test souboru)
-const url = "https://www.demoblaze.com/";
+import { testConfigType } from "../../src/types/fe/testConfigType";
 
 export class HomePagePom {
   protected _page: Page;
   protected _test: TestType<PlaywrightTestArgs & PlaywrightTestOptions,PlaywrightWorkerArgs & PlaywrightWorkerOptions>;
-  protected _url: string;
+  protected _testConfig:testConfigType
 
   constructor(
     page: Page,
-    test: TestType<PlaywrightTestArgs & PlaywrightTestOptions, PlaywrightWorkerArgs & PlaywrightWorkerOptions>
+    test: TestType<PlaywrightTestArgs & PlaywrightTestOptions, PlaywrightWorkerArgs & PlaywrightWorkerOptions>,
+    testConfig: testConfigType
   ) {
     this._page = page;
     this._test = test;
-    this._url = url;
+    this._testConfig = testConfig
   }
 
   public async navigateToHomePage() {
     await this._test.step("Navigate to home page", async () => {
-      await this._page.goto(this._url);
-      await expect(this._page).toHaveURL(this._url);
+      await this._page.goto(endpointUrl);
+      await expect(this._page).toHaveURL(endpointUrl);
     });
   }
   //klika se furt na prvni polozku - chyba v selektoru - opravit

@@ -2,6 +2,14 @@ import { test } from '@playwright/test'
 import { HomePagePom } from '../../src/pom/homePagePom'
 import { LoginPom } from '../../src/pom/loginPom'
 import { User } from '../types/fe/userDataTypes'
+import dotenv from 'dotenv'
+import { testConfigType } from '../../src/types/fe/testConfigType'
+
+
+dotenv.config({ override: true})
+
+const env = process.env.ENV || 'dev'
+const testConfig: testConfigType = require(`../../data/envs/config_${env}.json`)
 
 const jsonData = JSON.parse(JSON.stringify(require('../data/user/userData.json')))
 const user = jsonData as User
@@ -10,7 +18,7 @@ const user = jsonData as User
 test.describe('Login tests', () => {
 
     test('Login with correct username and password', async({page}) => {
-        const homePage = new HomePagePom(page, test)
+        const homePage = new HomePagePom(page, test, testConfig)
         const login = new LoginPom(page, test)
         
         await homePage.navigateToHomePage()
@@ -21,7 +29,7 @@ test.describe('Login tests', () => {
     })
 
     test('Login with invalid username and valid password', async({page}) => {
-        const homePage = new HomePagePom(page, test)
+        const homePage = new HomePagePom(page, test, testConfig)
         const login = new LoginPom(page, test)
 
         await homePage.navigateToHomePage()
@@ -34,7 +42,7 @@ test.describe('Login tests', () => {
     })
 
     test('Login with invalid password and valid username', async({page}) => {
-        const homePage = new HomePagePom(page, test)
+        const homePage = new HomePagePom(page, test, testConfig)
         const login = new LoginPom(page, test)
         
         await homePage.navigateToHomePage()
@@ -48,7 +56,7 @@ test.describe('Login tests', () => {
     })
 
     test('Login with no username and password', async({page}) => {
-        const homePage = new HomePagePom(page, test)
+        const homePage = new HomePagePom(page, test, testConfig)
         const login = new LoginPom(page, test)
 
         await homePage.navigateToHomePage()

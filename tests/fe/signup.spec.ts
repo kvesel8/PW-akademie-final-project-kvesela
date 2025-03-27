@@ -3,7 +3,14 @@ import { SignUpPom } from '../../src/pom/signUpPom'
 import { HomePagePom } from '../../src/pom/homePagePom'
 import { User } from '../types/fe/userDataTypes'
 import { generateUsername, generatePassword } from '../../src/utils/randomValues'
+import dotenv from 'dotenv'
+import { testConfigType } from "../../src/types/fe/testConfigType";
 
+
+dotenv.config({ override: true})
+
+const env = process.env.ENV || 'dev'
+const testConfig: testConfigType = require(`../../data/envs/config_${env}.json`)
 
 const jsonData = JSON.parse(JSON.stringify(require("../../data/json/userData.json")))
 const user = jsonData as User
@@ -11,7 +18,7 @@ const user = jsonData as User
 test.describe('Sign up tests', () =>{
 
     test('Sign up the new user', async ({page}) => {
-        const homePage = new HomePagePom(page, test)
+        const homePage = new HomePagePom(page, test, testConfig )
         const signUp = new SignUpPom(page, test)
         const username = generateUsername()
         const password = generatePassword(5)
@@ -26,7 +33,7 @@ test.describe('Sign up tests', () =>{
     })
 
     test('Sign up without username', async({page}) =>{
-        const homePage = new HomePagePom(page, test)
+        const homePage = new HomePagePom(page, test, testConfig)
         const signUp = new SignUpPom(page, test)
 
         await homePage.navigateToHomePage()
@@ -38,7 +45,7 @@ test.describe('Sign up tests', () =>{
     })
 
     test('Sign up without password', async({page}) => {
-        const homePage = new HomePagePom(page, test)
+        const homePage = new HomePagePom(page, test, testConfig)
         const signUp = new SignUpPom(page, test)
 
         await homePage.navigateToHomePage()
@@ -50,7 +57,7 @@ test.describe('Sign up tests', () =>{
     })
 
     test('Sign up without username and password', async({page}) => {
-        const homePage = new HomePagePom(page, test)
+        const homePage = new HomePagePom(page, test, testConfig)
         const signUp = new SignUpPom(page, test)
 
         await homePage.navigateToHomePage()
@@ -61,7 +68,7 @@ test.describe('Sign up tests', () =>{
     })
 
     test('Sign up with existing user', async({page}) => {
-        const homePage = new HomePagePom(page, test)
+        const homePage = new HomePagePom(page, test, testConfig)
         const signUp = new SignUpPom(page, test)
 
         await homePage.navigateToHomePage()
