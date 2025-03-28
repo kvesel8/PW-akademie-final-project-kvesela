@@ -1,39 +1,37 @@
 import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, Page, expect } from '@playwright/test'
 import { contactSel } from '../../data/selectors/contactSel'
+import { FeUtils } from '../lib/feUtils'
 
-export class ContactPom {
-    protected _page: Page
-    protected _test: TestType <PlaywrightTestArgs & PlaywrightTestOptions, PlaywrightWorkerArgs & PlaywrightWorkerOptions>
-
+export class ContactPom extends FeUtils {
+   
     constructor(
         page: Page,
         test: TestType <PlaywrightTestArgs & PlaywrightTestOptions, PlaywrightWorkerArgs & PlaywrightWorkerOptions>
     ) {
-        this._page = page
-        this._test = test
+       super(page, test)
     }
 
     public async displayContactForm(){
         await this._test.step('Display contact form', async() => {
-            await this._page.getByText(contactSel.CONTACT_FORM).click()
+            await this._clickBySelector(contactSel.CONTACT_FORM)
         })
     }
 
     public async fillContactEmail(email:string){
         await this._test.step('Fill contact email in contact form', async() => {
-            await this._page.locator(contactSel.EMAIL_FIELD).first().fill(email)
+            await this._fillBySelector(contactSel.EMAIL_FIELD, email)
         })
     }
 
     public async fillContactName(name:string){
         await this._test.step('Fill cotact name in contact form', async() => {
-            await this._page.locator(contactSel.NAME_FIELD).first().fill(name)
+            await this._fillBySelector(contactSel.NAME_FIELD, name)
         })
     }
 
     public async fillMesage(message:string){
         await this._test.step('Fill message in contact form', async() => {
-            await this._page.locator(contactSel.MESSAGE_FIELD).first().fill(message)
+            await this._fillBySelector(contactSel.MESSAGE_FIELD, message)
         })
     }
 

@@ -1,23 +1,21 @@
 import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, Page, expect } from '@playwright/test'
 import { cartOrderSel } from '../../data/selectors/cartOrderSel'
+import { FeUtils } from '../lib/feUtils'
 
 const url = 'https://www.demoblaze.com/cart.html#'
 
-export class CartOrderPom {
-    protected _page: Page
-    protected _test: TestType <PlaywrightTestArgs & PlaywrightTestOptions, PlaywrightWorkerArgs & PlaywrightWorkerOptions>
-
+export class CartOrderPom extends FeUtils{
+   
     constructor(
         page: Page,
         test: TestType <PlaywrightTestArgs & PlaywrightTestOptions, PlaywrightWorkerArgs & PlaywrightWorkerOptions>
     ) {
-        this._page = page
-        this._test = test
+        super(page, test)
     }
 
     public async displayCart(){
         await this._test.step('Display cart', async() => {
-            await this._page.locator(cartOrderSel.CART).first().click()
+            await this._clickBySelector(cartOrderSel.CART)
             await expect(this._page).toHaveURL(url)
         })
     }
@@ -25,7 +23,6 @@ export class CartOrderPom {
     public async addItemToCart(){
         await this._test.step('Add item to cart', async() => {
             await this._page.getByText(cartOrderSel.ADDTOCART_BUTTON).first().click()
-            await this._page.pause()
         })
     }
 
@@ -37,25 +34,25 @@ export class CartOrderPom {
 
     public async displayPlaceOrderForm(){
         await this._test.step('Displazy place order form', async() => {
-            await this._page.locator(cartOrderSel.PLACEORDER_BUTTON).first().click()
+            await this._clickBySelector(cartOrderSel.PLACEORDER_BUTTON)
         })
     }
 
     public async fillName(name:string){
         await this._test.step('Fill name in place order form', async() => {
-            await this._page.locator(cartOrderSel.NAME_FIELD).first().fill(name)
+            await this._fillBySelector(cartOrderSel.NAME_FIELD, name)
         })
     }
 
     public async fillCreditCard(card:number){
         await this._test.step('Fill credit card number in place order form', async() => {
-            await this._page.locator(cartOrderSel.CREDITCARD_FIELD).first().fill(card.toString())
+            await this._fillBySelector(cartOrderSel.CREDITCARD_FIELD, card)
         })
     }
 
     public async clickPurchaseButton(){
         await this._test.step('Click the purchase button in place order form', async() => {
-            await this._page.locator(cartOrderSel.PURCHASE_BUTTON).first().click()
+            await this._clickBySelector(cartOrderSel.PURCHASE_BUTTON)
         })
     }
 

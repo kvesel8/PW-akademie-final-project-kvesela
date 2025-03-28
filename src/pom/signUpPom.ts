@@ -1,10 +1,9 @@
 import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, Page } from "@playwright/test";
 import { signUpSel } from "../../data/selectors/signUpSel";
 import { testSecretsType } from '../../src/types/fe/globalTypes'
+import { FeUtils } from "../lib/feUtils";
 
-export class SignUpPom {
-    protected _page: Page
-    protected _test: TestType <PlaywrightTestArgs & PlaywrightTestOptions, PlaywrightWorkerArgs & PlaywrightWorkerOptions>
+export class SignUpPom extends FeUtils {
     protected _testSecrets: testSecretsType
 
     constructor(
@@ -12,26 +11,25 @@ export class SignUpPom {
         test: TestType <PlaywrightTestArgs & PlaywrightTestOptions, PlaywrightWorkerArgs & PlaywrightWorkerOptions>,
         testSecrets: testSecretsType
     ) {
-        this._page = page
-        this._test = test
+        super(page, test)
         this._testSecrets = testSecrets
     }
 
     public async displaySignUpForm(){
         await this._test.step('Navigate to Sign up', async() => {
-            await this._page.locator(signUpSel.SIGNUP_FORM).first().click()
+            await this._clickBySelector(signUpSel.SIGNUP_FORM)
         })
     }
 
     public async fillUserName( username: string){
         await this._test.step('Fill username in signup form', async() => {
-            await this._page.locator(signUpSel.USERNAME_FIELD).first().fill(username)
+            await this._fillBySelector(signUpSel.USERNAME_FIELD, username)
         })
     }
 
     public async fillPassword( password: string){
         await this._test.step('Fill password in signup form', async() => {
-            await this._page.locator(signUpSel.PASSWORD_FIELD).first().fill(password)
+            await this._fillBySelector(signUpSel.PASSWORD_FIELD, password)
         })
     }
 

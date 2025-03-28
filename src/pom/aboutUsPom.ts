@@ -1,16 +1,14 @@
 import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, Page, expect } from '@playwright/test'
 import { aboutUsSel } from '../../data/selectors/aboutUsSel'
+import { FeUtils } from '../lib/feUtils'
 
-export class AboutUsPom {
-    protected _page: Page
-    protected _test: TestType <PlaywrightTestArgs & PlaywrightTestOptions, PlaywrightWorkerArgs & PlaywrightWorkerOptions>
-
+export class AboutUsPom extends FeUtils{
+    
     constructor(
         page: Page,
         test: TestType <PlaywrightTestArgs & PlaywrightTestOptions, PlaywrightWorkerArgs & PlaywrightWorkerOptions>
     ) {
-        this._page = page
-        this._test = test
+        super(page, test)
     }
 
     public async displayAboutUs(){

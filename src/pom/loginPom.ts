@@ -1,11 +1,10 @@
 import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, Page, expect } from '@playwright/test'
 import { loginSel } from '../../data/selectors/loginSel'
 import { testSecretsType } from '../../src/types/fe/globalTypes'
+import { FeUtils } from '../lib/feUtils'
 
 
-export class LoginPom {
-    protected _page: Page
-    protected _test: TestType <PlaywrightTestArgs & PlaywrightTestOptions, PlaywrightWorkerArgs & PlaywrightWorkerOptions>
+export class LoginPom extends FeUtils {
     protected _testSecret: testSecretsType
 
     constructor (
@@ -13,26 +12,25 @@ export class LoginPom {
         test: TestType <PlaywrightTestArgs & PlaywrightTestOptions, PlaywrightWorkerArgs & PlaywrightWorkerOptions>,
         testSecret: testSecretsType
     ) {
-        this._page = page
-        this._test = test
+        super(page, test)
         this._testSecret = testSecret
     }
 
     public async displayLoginForm(){
         await this._test.step('Display of login form', async () => {
-            await this._page.locator(loginSel.LOGIN_FORM).first().click()
+            await this._clickBySelector(loginSel.LOGIN_FORM)
         })
     }
 
     public async fillUsername( username: string){
         await this._test.step('Fill username in login form', async () =>{
-            await this._page.locator(loginSel.USERNAME_FIELD).first().fill(username)
+            await this._fillBySelector(loginSel.USERNAME_FIELD, username)
         })
     }
 
     public async fillPassword(password: string){
         await this._test.step('Fill user password', async () => {
-            await this._page.locator(loginSel.PASSWORD_FIELD).first().fill(password)
+            await this._fillBySelector(loginSel.PASSWORD_FIELD, password)
         })
     }
 
@@ -51,7 +49,7 @@ export class LoginPom {
     public async logOut(){
         await this._test.step('Log out user', async() => {
             await expect(this._page.locator(loginSel.LOGOUT)).toBeVisible()
-            await this._page.locator(loginSel.LOGOUT).click()
+            await this._clickBySelector(loginSel.LOGOUT)
         })
     }
 

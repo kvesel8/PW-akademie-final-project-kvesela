@@ -1,10 +1,9 @@
 import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, Page, expect} from "@playwright/test";
 import { getRandomInt, selectRandomValueFromArray } from '../utils/randomValues'
 import { testConfigType } from "../../src/types/fe/globalTypes";
+import { FeUtils } from '../../src/lib/feUtils'
 
-export class HomePagePom {
-  protected _page: Page;
-  protected _test: TestType<PlaywrightTestArgs & PlaywrightTestOptions,PlaywrightWorkerArgs & PlaywrightWorkerOptions>;
+export class HomePagePom extends FeUtils {
   protected _testConfig:testConfigType
 
   constructor(
@@ -12,14 +11,13 @@ export class HomePagePom {
     test: TestType<PlaywrightTestArgs & PlaywrightTestOptions, PlaywrightWorkerArgs & PlaywrightWorkerOptions>,
     testConfig: testConfigType
   ) {
-    this._page = page;
-    this._test = test;
+    super(page, test)
     this._testConfig = testConfig
   }
 
   public async navigateToHomePage() {
     await this._test.step("Navigate to home page", async () => {
-      await this._page.goto(this._testConfig.endpointUrl);
+      await this._goTo(this._testConfig.endpointUrl)
       await expect(this._page).toHaveURL(this._testConfig.endpointUrl);
     });
   }
@@ -43,19 +41,14 @@ export class HomePagePom {
   } 
 
   public async pageDialogOn(){
-    await this._test.step('Start to listen to page dialog', async() => {
-        this._page.on('dialog', async(dialog) =>{
-            console.log(dialog.message())
-            await dialog.accept()
-        })
+    await this._test.step('Page dialog On', async() => {
+       await this._startListenPageDialog()
     })
 }
 
   public async pageDialogOff(){
-    await this._test.step('Stop to listen to page dialog', async() => {
-        this._page.off('dialog', async() => {
-            console.log('Dialog closed')
-        })
+    await this._test.step('Page dialog Off', async() => {
+        await this._endListenPageDialog()
     })
   }
 }
