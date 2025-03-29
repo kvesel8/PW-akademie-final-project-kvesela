@@ -2,6 +2,7 @@ import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerAr
 import { RespBody } from '../../src/types/be/respBodyType'
 import { BeUtils } from '../../src/lib/beUtils'
 import { testConfigType } from '../../src/types/fe/globalTypes'
+import { Serializable } from 'node:child_process'
 
 let resHeaders: RespBody['headers']
 let resHeadersArray: RespBody['headersArray']
@@ -34,9 +35,9 @@ export class UsersSom extends BeUtils{
         })
     }
 
-    public async createUser(){
+    public async createUser(data: string | Buffer | Serializable ){
         await this._test.step('Create a new user', async() => {
-            const postRes = await this._httpPost(this._testConfig.apiEndpointUrl.users)
+            const postRes = await this._httpPost(this._testConfig.apiEndpointUrl.users, {data:data})
         })
     }
 
@@ -46,9 +47,9 @@ export class UsersSom extends BeUtils{
         })
     }
 
-    public async updateUser(id: string | number){
+    public async updateUser(id: string | number, data: string | Buffer | Serializable ){
         await this._test.step("Update user by id", async() =>{
-            const patchRes = await this._httpPatch(`${this._testConfig.apiEndpointUrl.users}${id.toString()}`)
+            const patchRes = await this._httpPatch(`${this._testConfig.apiEndpointUrl.users}${id.toString()}`, {data:data})
         })
     }
 
