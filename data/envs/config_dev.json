@@ -1,3 +1,12 @@
 {
-    "endpointUrl":"https://www.demoblaze.com/"
+    "endpointUrl": "https://www.demoblaze.com/",
+    "apiEndpointUrl": {
+        "users": "https://fakerestapi.azurewebsites.net/api/v1/Users",
+        "activities": "https://fakerestapi.azurewebsites.net/api/v1/Activities",
+        "authors": "https://fakerestapi.azurewebsites.net/api/v1/Authors",
+        "authorsBookId":"https://fakerestapi.azurewebsites.net/api/v1/Authors/authors/books/",
+        "books": "https://fakerestapi.azurewebsites.net/api/v1/Books",
+        "coverPhotos": "https://fakerestapi.azurewebsites.net/api/v1/CoverPhotos",
+        "coverPhotosBooksId": "https://fakerestapi.azurewebsites.net/api/v1/CoverPhotos/books/covers/"
+    }
 }
