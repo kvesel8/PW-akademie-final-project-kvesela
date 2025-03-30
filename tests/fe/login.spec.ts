@@ -20,23 +20,24 @@ const testSecrets: testSecretsType = {
 }
 
 test.describe('Login tests', () => {
+    let homePage
+    let login
 
-    test('Login with correct username and password', async({page}) => {
-        const homePage = new HomePagePom(page, test, testConfig)
-        const login = new LoginPom(page, test, testSecrets)
-        
-        await homePage.navigateToHomePage()
+    test.beforeEach('Initialization of poms and navigate to homepage', async ({page}) => {
+        homePage = new HomePagePom(page, test, testConfig)
+        login = new LoginPom(page, test, testSecrets)
+
+        homePage.navigateToHomePage()
+    })
+
+    test('Login with correct username and password', async({}) => {
         await login.displayLoginForm()
         await login.fillUsername(user.validUsername_validPassword.username)
         await login.fillPassword(user.validUsername_validPassword.password)
         await login.clickLoginButton()
     })
 
-    test('Login with invalid username and valid password', async({page}) => {
-        const homePage = new HomePagePom(page, test, testConfig)
-        const login = new LoginPom(page, test, testSecrets)
-
-        await homePage.navigateToHomePage()
+    test('Login with invalid username and valid password', async({}) => {
         await homePage.pageDialogOn()
         await login.displayLoginForm()
         await login.fillUsername(user.invalidUserName_validPassword.username)
@@ -45,25 +46,16 @@ test.describe('Login tests', () => {
         await homePage.pageDialogOff()
     })
 
-    test('Login with invalid password and valid username', async({page}) => {
-        const homePage = new HomePagePom(page, test, testConfig)
-        const login = new LoginPom(page, test, testSecrets)
-        
-        await homePage.navigateToHomePage()
+    test('Login with invalid password and valid username', async({}) => {
         await homePage.pageDialogOn()
         await login.displayLoginForm()
         await login.fillUsername(user.invalidPassword_valid_username.username)
         await login.fillPassword(user.invalidPassword_valid_username.password)
         await login.clickLoginButton()
         await homePage.pageDialogOff()
-
     })
 
-    test('Login with no username and password', async({page}) => {
-        const homePage = new HomePagePom(page, test, testConfig)
-        const login = new LoginPom(page, test, testSecrets)
-
-        await homePage.navigateToHomePage()
+    test('Login with no username and password', async({}) => {
         await homePage.pageDialogOn()
         await login.displayLoginForm()
         await login.clickLoginButton()

@@ -21,61 +21,53 @@ const testSecrets: testSecretsType = {
 
 test.describe('Navigation tests', ()=>{
 
-    test('Navigate to contact form',async({page})=>{
-        const homePage = new HomePagePom(page,test, testConfig)
-        const contact = new ContactPom(page,test)
+    let homePage
+    let signUp
+    let login
+    let cart
+    let aboutUs
+    let contact
+
+    test.beforeEach('Initialization of poms and navigating to homepage', async ({page}) => {
+        homePage  = new HomePagePom(page, test, testConfig)
+        signUp = new SignUpPom(page, test, testSecrets)
+        login = new LoginPom(page, test, testSecrets)
+        cart = new CartOrderPom(page, test)
+        aboutUs = new AboutUsPom(page, test)
+        contact = new ContactPom(page, test)
 
         await homePage.navigateToHomePage()
+    })
+
+    test('Navigate to contact form',async({})=>{
         await contact.displayContactForm()
         await contact.clickCloseButton()
     })
 
-    test('Navigate to About us', async({page})=>{
-        const homePage = new HomePagePom(page,test, testConfig)
-        const aboutUs = new AboutUsPom(page, test)
-
-        await homePage.navigateToHomePage()
+    test('Navigate to About us', async({})=>{
         await aboutUs.displayAboutUs()
         await aboutUs.clickCloseButton()
     })
 
-    test('Navigate to cart', async({page}) =>{
-        const homePage = new HomePagePom(page,test, testConfig)
-        const cart = new CartOrderPom(page,test)
-
-        await homePage.navigateToHomePage()
+    test('Navigate to cart', async({}) =>{
         await cart.displayCart()
     })
 
-    test('Navigate to login form', async({page}) =>{
-        const homePage = new HomePagePom(page, test, testConfig)
-        const login = new LoginPom(page, test, testSecrets )
-
-        await homePage.navigateToHomePage()
+    test('Navigate to login form', async({}) =>{
         await login.displayLoginForm()
         await login.clickCloseButton()
     })
 
-    test('Navigate to sign up form', async({page}) =>{
-        const homePage = new HomePagePom(page, test, testConfig)
-        const signUp = new SignUpPom(page,test, testSecrets)
-        
-        await homePage.navigateToHomePage()
+    test('Navigate to sign up form', async({}) =>{
         await signUp.displaySignUpForm()
         await signUp.clickCloseButton()
     })
 
-    test('Select a product category', async({page}) => {
-        const homePage = new HomePagePom(page, test, testConfig)
-
-        await homePage.navigateToHomePage()
+    test('Select a product category', async({}) => {
         await homePage.displayCategory()
     })
 
-    test('Display detail of an product', async({page}) => {
-        const homePage = new HomePagePom(page, test, testConfig)
-
-        await homePage.navigateToHomePage()
+    test('Display detail of an product', async({}) => {
         await homePage.displayItemDetail()
     })
 })

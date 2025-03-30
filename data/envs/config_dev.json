@@ -1,5 +1,5 @@
 {
-    "endpointUrl": "https://www.demoblaze.com/",
+    "url": "https://www.demoblaze.com/",
     "apiEndpointUrl": {
         "users": "https://fakerestapi.azurewebsites.net/api/v1/Users",
         "activities": "https://fakerestapi.azurewebsites.net/api/v1/Activities",

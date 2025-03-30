@@ -21,14 +21,20 @@ const jsonData = JSON.parse(JSON.stringify(require("../../data/json/userData.jso
 const user = jsonData as User
 
 test.describe('Sign up tests', () =>{
+    let homePage
+    let signUp 
 
-    test('Sign up the new user', async ({page}) => {
-        const homePage = new HomePagePom(page, test, testConfig)
-        const signUp = new SignUpPom(page, test, testSecrets)
+    test.beforeEach('Initialization of poms and navigating to homepage',async({ page }) => {
+        homePage  = new HomePagePom(page, test, testConfig)
+        signUp = new SignUpPom(page, test, testSecrets)
+
+        await homePage.navigateToHomePage()
+    })
+
+    test('Sign up the new user', async ({}) => {        
         const username = generateUsername()
         const password = generatePassword(5)
 
-        await homePage.navigateToHomePage()
         await signUp.displaySignUpForm()
         await homePage.pageDialogOn()
         await signUp.fillUserName(username)
@@ -37,11 +43,7 @@ test.describe('Sign up tests', () =>{
         await homePage.pageDialogOff()
     })
 
-    test('Sign up without username', async({page}) =>{
-        const homePage = new HomePagePom(page, test, testConfig)
-        const signUp = new SignUpPom(page, test, testSecrets)
-
-        await homePage.navigateToHomePage()
+    test('Sign up without username', async({}) =>{       
         await signUp.displaySignUpForm()
         await homePage.pageDialogOn()
         await signUp.fillPassword(user.validUsername_validPassword.password)
@@ -49,11 +51,7 @@ test.describe('Sign up tests', () =>{
         await homePage.pageDialogOff()
     })
 
-    test('Sign up without password', async({page}) => {
-        const homePage = new HomePagePom(page, test, testConfig)
-        const signUp = new SignUpPom(page, test, testSecrets)
-
-        await homePage.navigateToHomePage()
+    test('Sign up without password', async({}) => {        
         await signUp.displaySignUpForm()
         await homePage.pageDialogOn()
         await signUp.fillUserName(user.validUsername_validPassword.username)
@@ -61,22 +59,14 @@ test.describe('Sign up tests', () =>{
         await homePage.pageDialogOff()
     })
 
-    test('Sign up without username and password', async({page}) => {
-        const homePage = new HomePagePom(page, test, testConfig)
-        const signUp = new SignUpPom(page, test, testSecrets)
-
-        await homePage.navigateToHomePage()
+    test('Sign up without username and password', async({}) => {
         await signUp.displaySignUpForm()
         await homePage.pageDialogOn()
         await signUp.clickSignUpButton()
         await homePage.pageDialogOff()
     })
 
-    test('Sign up with existing user', async({page}) => {
-        const homePage = new HomePagePom(page, test, testConfig)
-        const signUp = new SignUpPom(page, test, testSecrets)
-
-        await homePage.navigateToHomePage()
+    test('Sign up with existing user', async({}) => {
         await signUp.displaySignUpForm()
         await homePage.pageDialogOn()
         await signUp.fillUserName(user.validUsername_validPassword.username)

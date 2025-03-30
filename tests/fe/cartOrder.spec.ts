@@ -16,31 +16,29 @@ const placeOrderForm = jsonData as placeOrderFormType
 
 test.describe('Cart tests and place order tests', () =>{
 
-    test.only('Add item in cart',{tag:'@add_to_cart'}, async({page}) => {
-        const homePage = new HomePagePom(page, test, testConfig)
-        const cartOrder = new CartOrderPom(page,test)
+    let homePage
+    let cartOrder
 
-        await homePage.navigateToHomePage()
+    test.beforeEach('Initialization of pom and navigate to homepage', async({page}) => {
+        homePage = new HomePagePom(page, test, testConfig)
+        cartOrder = new CartOrderPom(page, test)
+        
+        homePage.navigateToHomePage()
+    })
+
+    test.only('Add item in cart',{tag:'@add_to_cart'}, async({}) => {
         await homePage.displayItemDetail()
         await cartOrder.addItemToCart()
     })
 
-    test('Delete item from cart', async({page}) =>{
-        const homePage = new HomePagePom(page, test, testConfig)
-        const cartOrder = new CartOrderPom(page,test)
-
-        await homePage.navigateToHomePage()
+    test('Delete item from cart', async({}) =>{
         await homePage.displayItemDetail()
         await cartOrder.addItemToCart()
         await cartOrder.displayCart()
         await cartOrder.deleteItemFromCart()
     })
 
-    test('Send filled place order formular without item in cart', async({page}) =>{
-        const homePage = new HomePagePom(page, test, testConfig)
-        const cartOrder = new CartOrderPom(page,test)
-
-        await homePage.navigateToHomePage()
+    test('Send filled place order formular without item in cart', async({}) =>{
         await cartOrder.displayCart()
         await cartOrder.displayPlaceOrderForm()
         await cartOrder.fillName(placeOrderForm.name)
@@ -48,11 +46,7 @@ test.describe('Cart tests and place order tests', () =>{
         await cartOrder.clickPurchaseButton()
     })
 
-    test('Send filled place order formular with item in cart', async({page}) => {
-        const homePage = new HomePagePom(page, test, testConfig)
-        const cartOrder = new CartOrderPom(page,test)
-
-        await homePage.navigateToHomePage()
+    test('Send filled place order formular with item in cart', async({}) => {
         await homePage.displayItemDetail()
         await cartOrder.addItemToCart()
         await cartOrder.displayCart()
@@ -62,11 +56,7 @@ test.describe('Cart tests and place order tests', () =>{
         await cartOrder.clickPurchaseButton()        
     })
 
-    test('Send place order formular without name', async({page}) => {
-        const homePage = new HomePagePom(page, test, testConfig)
-        const cartOrder = new CartOrderPom(page,test)
-
-        await homePage.navigateToHomePage()
+    test('Send place order formular without name', async({}) => {
         await homePage.displayItemDetail()
         await cartOrder.addItemToCart()
         await cartOrder.displayCart()
@@ -75,25 +65,16 @@ test.describe('Cart tests and place order tests', () =>{
         await cartOrder.clickPurchaseButton()    
     })
 
-    test('Send place order formular without credit card', async({page}) =>{
-        const homePage = new HomePagePom(page, test, testConfig)
-        const cartOrder = new CartOrderPom(page,test)
-
-        await homePage.navigateToHomePage()
+    test('Send place order formular without credit card', async({}) =>{
         await homePage.displayItemDetail()
         await cartOrder.addItemToCart()
         await cartOrder.displayCart()
         await cartOrder.displayPlaceOrderForm()
         await cartOrder.fillName(placeOrderForm.name)
         await cartOrder.clickPurchaseButton() 
-
     })
 
-    test('Send place order formular without name and credit card', async({page}) =>{
-        const homePage = new HomePagePom(page, test, testConfig)
-        const cartOrder = new CartOrderPom(page,test)
-
-        await homePage.navigateToHomePage()
+    test('Send place order formular without name and credit card', async({}) =>{
         await homePage.displayItemDetail()
         await cartOrder.addItemToCart()
         await cartOrder.displayCart()

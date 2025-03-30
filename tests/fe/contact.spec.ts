@@ -15,12 +15,17 @@ const jsonData = JSON.parse(JSON.stringify(require('../data/json/contactData.jso
 const contactData = jsonData as contactDataType
 
 test.describe('Contact form tests', () => {
+    let homePage
+    let contact
+
+    test.beforeEach('Initialization of poms and navigate to homepage', async ({page}) => {
+        homePage = new HomePagePom(page, test, testConfig)
+        contact = new ContactPom(page, test)
+
+        homePage.navigateToHomePage()
+    })
    
-   test('Fill contact form and send message', async({page}) =>{
-        const homePage = new HomePagePom(page, test, testConfig)
-        const contact = new ContactPom(page, test)
-
-        await homePage.navigateToHomePage()
+   test('Fill contact form and send message', async({}) =>{
         await homePage.pageDialogOn()
         await contact.displayContactForm()
         await contact.fillContactEmail(contactData.contactEmail)
@@ -30,11 +35,7 @@ test.describe('Contact form tests', () => {
         await homePage.pageDialogOff()
     })
 
-    test('Send contact form with no message', async({page}) =>{
-        const homePage = new HomePagePom(page, test, testConfig)
-        const contact = new ContactPom(page, test)
-
-        await homePage.navigateToHomePage()
+    test('Send contact form with no message', async({}) =>{
         await homePage.pageDialogOn()
         await contact.displayContactForm()
         await contact.fillContactEmail(contactData.contactEmail)
@@ -43,11 +44,7 @@ test.describe('Contact form tests', () => {
         await homePage.pageDialogOff()
     })
 
-    test('Send contact form without contact email', async({page}) =>{
-        const homePage = new HomePagePom(page, test, testConfig)
-        const contact = new ContactPom(page, test)
-        
-        await homePage.navigateToHomePage()
+    test('Send contact form without contact email', async({}) =>{
         await homePage.pageDialogOn()
         await contact.displayContactForm()
         await contact.fillContactName(contactData.contactName)
@@ -56,11 +53,7 @@ test.describe('Contact form tests', () => {
         await homePage.pageDialogOff()
     })
 
-    test('Send empty contact form', async({page}) => {
-        const homePage = new HomePagePom(page, test, testConfig)
-        const contact = new ContactPom(page, test)
-
-        await homePage.navigateToHomePage()
+    test('Send empty contact form', async({}) => {
         await homePage.pageDialogOn()
         await contact.displayContactForm()
         await contact.clickSendMessageButton()
