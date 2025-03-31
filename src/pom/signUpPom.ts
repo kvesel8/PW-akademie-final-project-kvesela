@@ -1,15 +1,15 @@
 import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, Page } from "@playwright/test";
 import { signUpSel } from "../../data/selectors/signUpSel";
-import { testSecretsType } from '../../src/types/fe/globalTypes'
+import { TestSecretsType } from '../../src/types/fe/globalTypes'
 import { FeUtils } from "../lib/feUtils";
 
 export class SignUpPom extends FeUtils {
-    protected _testSecrets: testSecretsType
+    protected _testSecrets: TestSecretsType
 
     constructor(
         page: Page,
         test: TestType <PlaywrightTestArgs & PlaywrightTestOptions, PlaywrightWorkerArgs & PlaywrightWorkerOptions>,
-        testSecrets: testSecretsType
+        testSecrets: TestSecretsType
     ) {
         super(page, test)
         this._testSecrets = testSecrets

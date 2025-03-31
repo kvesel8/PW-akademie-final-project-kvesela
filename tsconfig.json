@@ -19,7 +19,6 @@
       "forceConsistentCasingInFileNames": true,       // Zajišťuje, že jména souborů jsou konzistentní
   
       "outDir": "dist",                               // Cesta, kam budou zkompilované JS soubory uloženy (pokud budete kompilovat)
-      "rootDirs": ["tests", "src"]                    // Cesta k testům (TypeScript kód)
     },
     "include": ["tests/**/*.ts"],                     // Zahrnuje všechny TypeScript soubory v testovacím adresáři
     "exclude": ["node_modules"]                       // Vylučuje složku node_modules

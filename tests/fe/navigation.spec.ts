@@ -6,15 +6,15 @@ import { CartOrderPom } from '../../src/pom/cartOrderPom'
 import { LoginPom } from '../../src/pom/loginPom'
 import { SignUpPom } from '../../src/pom/signUpPom'
 import dotenv from 'dotenv'
-import { testConfigType, testSecretsType } from '../../src/types/fe/globalTypes'
+import { TestConfigType, TestSecretsType } from '../../src/types/fe/globalTypes'
 
 
 dotenv.config({ override: true})
 
 const env = process.env.ENV || 'dev'
-const testConfig: testConfigType = require(`../../data/envs/config_${env}.json`)
+const testConfig: TestConfigType = require(`../../data/envs/config_${env}.json`)
 
-const testSecrets: testSecretsType = {
+const testSecrets: TestSecretsType = {
     username: process.env.UNAME,
     password: process.env.PWORD
 }

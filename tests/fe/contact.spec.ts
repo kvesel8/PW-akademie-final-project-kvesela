@@ -1,15 +1,15 @@
 import { test } from '@playwright/test'
 import { HomePagePom } from '../../src/pom/homePagePom'
 import { ContactPom } from '../../src/pom/contactPom'
-import { contactDataType } from '../types/fe/contactDataTypes'
+import { contactDataType } from '../../src/types/fe/contactDataTypes'
 import dotenv from 'dotenv'
-import { testConfigType } from '../../src/types/fe/globalTypes'
+import { TestConfigType } from '../../src/types/fe/globalTypes'
 
 
 dotenv.config({ override: true})
 
 const env = process.env.ENV || 'dev'
-const testConfig: testConfigType = require(`../../data/envs/config_${env}.json`)
+const testConfig: TestConfigType = require(`../../data/envs/config_${env}.json`)
 
 const jsonData = JSON.parse(JSON.stringify(require('../data/json/contactData.json')))
 const contactData = jsonData as contactDataType
