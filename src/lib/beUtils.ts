@@ -2,6 +2,7 @@ import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerAr
 import { Serializable } from "node:child_process";
 import { ReadStream } from "node:fs";
 
+let resStatus
 export class BeUtils {
     protected _request: APIRequestContext;
     protected _test: TestType<PlaywrightTestArgs & PlaywrightTestOptions,PlaywrightWorkerArgs & PlaywrightWorkerOptions>;
@@ -48,8 +49,8 @@ export class BeUtils {
                         params: options?.params,
                         timeout: options?.timeout
                 })
-
-            expect.soft(res.status()).toMatch(/^(?:[1-3]\d{2})$/)
+            resStatus = res.status().toString()
+            expect.soft(resStatus).toMatch(/^(?:[1-3]\d{2})$/)
 
         })
         return res
@@ -78,8 +79,9 @@ export class BeUtils {
             timeout?: number;
         }
     ) {
-         await this._test.step('HTTP POST', async () => {
-            await this._request.post(url, {
+        let res: Awaited<APIResponse>
+        await this._test.step('HTTP POST', async () => {
+           res = await this._request.post(url, {
                 data: options?.data,
                 form: options?.form,
                 headers: options?.headers,
@@ -87,7 +89,10 @@ export class BeUtils {
                 params: options?.params,
                 timeout: options?.timeout
             })
+            resStatus = res.status().toString()
+            expect.soft(resStatus).toMatch(/^(?:[1-3]\d{2})$/)
         })
+        return res
     }
 
     protected async _httpPut(
@@ -113,8 +118,9 @@ export class BeUtils {
             timeout?: number;
         }
     ) {
-         await this._test.step('HTTP PUT', async () => {
-            await this._request.put(url, {
+        let res: Awaited<APIResponse>
+        await this._test.step('HTTP PUT', async () => {
+           res = await this._request.put(url, {
                 data: options?.data,
                 form: options?.form,
                 headers: options?.headers,
@@ -122,7 +128,10 @@ export class BeUtils {
                 params: options?.params,
                 timeout: options?.timeout
             })
+            resStatus = res.status().toString()
+            expect.soft(resStatus).toMatch(/^(?:[1-3]\d{2})$/)
         })
+        return res
     }
 
     protected async _httpPatch(
@@ -148,8 +157,9 @@ export class BeUtils {
             timeout?: number;
         }
     ) {
-         await this._test.step('HTTP PATCH', async () => {
-            await this._request.patch(url, {
+        let res: Awaited<APIResponse>
+        await this._test.step('HTTP PATCH', async () => {
+           res = await this._request.patch(url, {
                 data: options?.data,
                 form: options?.form,
                 headers: options?.headers,
@@ -157,7 +167,10 @@ export class BeUtils {
                 params: options?.params,
                 timeout: options?.timeout
             })
+            resStatus = res.status().toString()
+            expect.soft(resStatus).toMatch(/^(?:[1-3]\d{2})$/)
         })
+        return res
     }
 
     protected async _httpDelete(
@@ -183,8 +196,9 @@ export class BeUtils {
             timeout?: number;
         }
     ) {
+        let res: Awaited<APIResponse>
         await this._test.step('HTTP DELETE', async () => {
-            await this._request.delete(url, {
+            res = await this._request.delete(url, {
                 data: options?.data,
                 form: options?.form,
                 headers: options?.headers,
@@ -192,6 +206,9 @@ export class BeUtils {
                 params: options?.params,
                 timeout: options?.timeout
             })
+            resStatus = res.status().toString()
+            expect.soft(resStatus).toMatch(/^(?:[1-3]\d{2})$/)
         })
+        return res
     }
 }

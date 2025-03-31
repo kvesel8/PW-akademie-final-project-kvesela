@@ -30,3 +30,5 @@ export function generatePassword(length: number): string {
   }
   return password;
 }
+
+//Function to generate a random number from a count of records

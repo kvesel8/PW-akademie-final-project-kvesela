@@ -1,4 +1,4 @@
-export type placeOrderFormType = {
+export type PlaceOrderFormType = {
     name: string
     creditcard: number
 }

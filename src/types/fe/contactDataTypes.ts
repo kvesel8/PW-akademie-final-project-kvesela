@@ -1,4 +1,4 @@
-export type contactDataType = {
+export type ContactDataType = {
 
     contactEmail: string
     contactName: string

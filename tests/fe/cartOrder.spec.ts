@@ -1,7 +1,7 @@
 import { test } from '@playwright/test'
 import { HomePagePom } from '../../src/pom/homePagePom'
 import { CartOrderPom } from '../../src/pom/cartOrderPom'
-import { placeOrderFormType } from '../../src/types/fe/placeOrderFormTypes'
+import { PlaceOrderFormType } from '../../src/types/fe/placeOrderFormTypes'
 import dotenv from 'dotenv'
 import { TestConfigType } from '../../src/types/fe/globalTypes'
 
@@ -12,7 +12,7 @@ const env = process.env.ENV || 'dev'
 const testConfig: TestConfigType = require(`../../data/envs/config_${env}.json`)
 
 const jsonData = JSON.parse(JSON.stringify(require('../../data/json/placeOrderFromData.json')))
-const placeOrderForm = jsonData as placeOrderFormType
+const placeOrderForm = jsonData as PlaceOrderFormType
 
 test.describe('Cart tests and place order tests', () =>{
 

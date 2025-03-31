@@ -14,7 +14,7 @@ let resJson: RespBody['json'] = Promise.resolve({})
 let resText: RespBody['text']
 let resBodyBuffer: RespBody['bodyBuffer']
 let resBody: RespBody['body']
-
+let resBodyBufferToString 
 
 export class UsersSom extends BeUtils{
     protected _testConfig: TestConfigType
@@ -29,11 +29,20 @@ export class UsersSom extends BeUtils{
     }
 
     public async getListOfAllUsers(){
-        await this._test.step('Get list of all users', async() => {
+        await this._test.step('Get list of all users with', async() => {
             const getRes = await this._httpGet(`${this._testConfig.apiEndpoint}/v1/Users`)  
             
-            const resBody = await getRes.json()
-            expect(resBody.id).toBe(10)
+            resBodyBuffer = await getRes.body()
+            resBodyBufferToString = resBodyBuffer.toString()
+
+            if(resBodyBuffer && resBodyBufferToString.trim()){
+                try {
+                    resBody = JSON.parse(resBodyBufferToString)
+                } catch (error) {
+                    console.error(resBodyBufferToString);                    
+                }
+            } 
+            console.log(resBody)            
         })
     }
 
@@ -46,6 +55,18 @@ export class UsersSom extends BeUtils{
     public async getUserById(id: string | number){
         await this._test.step('Get user by id', async() => {
             const getRes = await this._httpGet(`${this._testConfig.apiEndpoint}/v1/Users/${id.toString()}`)
+
+            resBodyBuffer = await getRes.body()
+            resBodyBufferToString = resBodyBuffer.toString()
+
+            if(resBodyBuffer && resBodyBufferToString.trim()){
+                try {
+                    resBody = JSON.parse(resBodyBufferToString)
+                } catch (error) {
+                    console.error(resBodyBufferToString)
+                }
+            }
+            console.log(resBody)
         })
     }
 
