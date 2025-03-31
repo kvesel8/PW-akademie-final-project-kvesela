@@ -1,4 +1,4 @@
-import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, APIRequestContext, expect} from "@playwright/test";
+import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, APIRequestContext, expect, APIResponse} from "@playwright/test";
 import { Serializable } from "node:child_process";
 import { ReadStream } from "node:fs";
 
@@ -38,16 +38,21 @@ export class BeUtils {
             timeout?: number;
         }
     ) {
+        let res: Awaited<APIResponse>
         await this._test.step('HTTP GET', async () => {
-            await this._request.get(url, {
-                    data: options?.data,
-                    form: options?.form,
-                    headers: options?.headers,
-                    multipart: options?.multipart,
-                    params: options?.params,
-                    timeout: options?.timeout
+            res = await this._request.get(url, {
+                        data: options?.data,
+                        form: options?.form,
+                        headers: options?.headers,
+                        multipart: options?.multipart,
+                        params: options?.params,
+                        timeout: options?.timeout
                 })
+
+            expect.soft(res.status()).toMatch(/^(?:[1-3]\d{2})$/)
+
         })
+        return res
     }
 
     protected async _httpPost(
@@ -63,7 +68,7 @@ export class BeUtils {
             multipart?: FormData | {
                 [key: string]: string | number | boolean | ReadStream | {
                     name: string;
-                    mimeType: string;
+                    mimeType: string; //typ datoveho souboru
                     buffer: Buffer;
                 };
             },

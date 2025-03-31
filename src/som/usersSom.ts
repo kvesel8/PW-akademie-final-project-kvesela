@@ -1,7 +1,7 @@
-import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, APIResponse, APIRequestContext} from '@playwright/test'
+import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, APIResponse, APIRequestContext, expect} from '@playwright/test'
 import { RespBody } from '../../src/types/be/respBodyType'
 import { BeUtils } from '../../src/lib/beUtils'
-import { testConfigType } from '../../src/types/fe/globalTypes'
+import { TestConfigType } from '../../src/types/fe/globalTypes'
 import { Serializable } from 'node:child_process'
 
 let resHeaders: RespBody['headers']
@@ -17,12 +17,12 @@ let resBody: RespBody['body']
 
 
 export class UsersSom extends BeUtils{
-    protected _testConfig: testConfigType
+    protected _testConfig: TestConfigType
 
     constructor (
         request:APIRequestContext,
         test: TestType <PlaywrightTestArgs & PlaywrightTestOptions, PlaywrightWorkerArgs & PlaywrightWorkerOptions>,
-        testConfig: testConfigType
+        testConfig: TestConfigType
     ) {
         super( request, test)
         this._testConfig = testConfig
@@ -30,32 +30,34 @@ export class UsersSom extends BeUtils{
 
     public async getListOfAllUsers(){
         await this._test.step('Get list of all users', async() => {
-            const getRes = await this._httpGet(this._testConfig.apiEndpointUrl.users)      
+            const getRes = await this._httpGet(`${this._testConfig.apiEndpoint}/v1/Users`)  
             
+            const resBody = await getRes.json()
+            expect(resBody.id).toBe(10)
         })
     }
 
-    public async createUser(data: string | Buffer | Serializable ){
+    public async createUser(data:Object){
         await this._test.step('Create a new user', async() => {
-            const postRes = await this._httpPost(this._testConfig.apiEndpointUrl.users, {data:data})
+            const postRes = await this._httpPost(`${this._testConfig.apiEndpoint}/v1/Users`, {data:data})
         })
     }
 
     public async getUserById(id: string | number){
         await this._test.step('Get user by id', async() => {
-            const getRes = await this._httpGet(`${this._testConfig.apiEndpointUrl.users}${id.toString()}`)
+            const getRes = await this._httpGet(`${this._testConfig.apiEndpoint}/v1/Users/${id.toString()}`)
         })
     }
 
     public async updateUser(id: string | number, data: string | Buffer | Serializable ){
         await this._test.step("Update user by id", async() =>{
-            const patchRes = await this._httpPatch(`${this._testConfig.apiEndpointUrl.users}${id.toString()}`, {data:data})
+            const patchRes = await this._httpPatch(`${this._testConfig.apiEndpoint}/v1/Users/${id.toString()}`, {data:data})
         })
     }
 
     public async deleteUser(id: string | number){
         await this._test.step('Delete user by id', async() => {
-            const deleteRes = await this._httpDelete(`${this._testConfig.apiEndpointUrl.users}${id.toString()}`)
+            const deleteRes = await this._httpDelete(`${this._testConfig.apiEndpoint}/v1/Users/${id.toString()}`)
         })
     }
 }

@@ -1,7 +1,8 @@
-export type testConfigType = {
-    endpointUrl: string
-    apiEndpointUrl: {
-        users: string
+export type TestConfigType = {
+    url: string
+    apiEndpoint: string
+
+    components: {
         activities : string
         authors: string
         authorsBookId: string
@@ -11,7 +12,7 @@ export type testConfigType = {
     }
 }
 
-export type testSecretsType = {
+export type TestSecretsType = {
     username: string,
     password: string
 }
