@@ -30,9 +30,9 @@ export class UsersSom extends BeUtils{
 
     public async getListOfAllUsers(){
         await this._test.step('Get list of all users with', async() => {
-            const getRes = await this._httpGet(`${this._testConfig.apiEndpoint}/v1/Users`)  
+            const res = await this._httpGet(`${this._testConfig.apiEndpoint}/v1/Users`)  
             
-            resBodyBuffer = await getRes.body()
+            resBodyBuffer = await res.body()
             resBodyBufferToString = resBodyBuffer.toString()
 
             if(resBodyBuffer && resBodyBufferToString.trim()){
@@ -54,9 +54,9 @@ export class UsersSom extends BeUtils{
 
     public async getUserById(id: string | number){
         await this._test.step('Get user by id', async() => {
-            const getRes = await this._httpGet(`${this._testConfig.apiEndpoint}/v1/Users/${id.toString()}`)
+            const res = await this._httpGet(`${this._testConfig.apiEndpoint}/v1/Users/${id.toString()}`)
 
-            resBodyBuffer = await getRes.body()
+            resBodyBuffer = await res.body()
             resBodyBufferToString = resBodyBuffer.toString()
 
             if(resBodyBuffer && resBodyBufferToString.trim()){

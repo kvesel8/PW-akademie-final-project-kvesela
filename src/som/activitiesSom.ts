@@ -21,9 +21,9 @@ export class ActivitiesSom extends BeUtils{
 
     public async getListOfActivities() {
         await this._test.step('Get list of activities', async() => {
-           const getRes = await this._httpGet(`${this._testConfig.apiEndpoint}/v1/Activities`)
+           const res = await this._httpGet(`${this._testConfig.apiEndpoint}/v1/Activities`)
 
-            resBodyBuffer = await getRes.body()
+            resBodyBuffer = await res.body()
             resBodyBufferToString = resBodyBuffer.toString()
 
             if (resBodyBuffer && resBodyBufferToString.trim){
@@ -45,7 +45,7 @@ export class ActivitiesSom extends BeUtils{
 
     public async getActivityById(id: string | number) {
         await this._test.step('Get activity by id', async() => {
-            const res = await this._httpGet(`${this._testConfig.apiEndpoint}/v1/Activities/${id.toString}`)
+            const res = await this._httpGet(`${this._testConfig.apiEndpoint}/v1/Activities/${id.toString()}`)
 
             resBodyBuffer = await res.body()
             resBodyBufferToString = resBodyBuffer.toString()
@@ -62,13 +62,13 @@ export class ActivitiesSom extends BeUtils{
 
     public async updateActivityById(id: string | number, data:Object) {
         await this._test.step('Update activity by id', async() => {
-            await this._httpPut(`${this._testConfig.apiEndpoint}/v1/Activities/${id.toString}`, {data:data})
+            await this._httpPut(`${this._testConfig.apiEndpoint}/v1/Activities/${id.toString()}`, {data:data})
         })
     }
 
     public async deleteActivityById(id: string | number) {
         await this._test.step('Delete activity by id', async() => {
-            await this._httpDelete(`${this._testConfig.apiEndpoint}/v1/Activities/${id.toString}`)
+            await this._httpDelete(`${this._testConfig.apiEndpoint}/v1/Activities/${id.toString()}`)
         })
     }
 }
