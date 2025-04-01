@@ -1,12 +1,4 @@
 {
     "url": "https://www.demoblaze.com",
-
-    "apiEndpoint": "https://fakerestapi.azurewebsites.net/api",
-
-    "components": {
-        "authors": "/v1/Authors",
-        "authorsBookId":"/v1/Authors/authors/books",
-        "coverPhotos": "/v1/CoverPhotos",
-        "coverPhotosBooksId": "/v1/CoverPhotos/books/covers"
-    }
+    "apiEndpoint": "https://fakerestapi.azurewebsites.net/api"
 }
