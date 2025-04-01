@@ -13,7 +13,7 @@ const jsonData = JSON.parse(JSON.stringify(require('../../data/json/be/usersData
 const usersData = jsonData as usersDataType
 
 
-test.only('Display list of all users', async ({request}) => {
+test('Display list of all users', async ({request}) => {
     const users = new UsersSom(request, test, testConfig)
 
     await users.getListOfAllUsers()

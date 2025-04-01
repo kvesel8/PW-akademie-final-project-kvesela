@@ -1,4 +1,4 @@
-import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions APIRequestContext} from '@playwright/test'
+import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, APIRequestContext} from '@playwright/test'
 import { BeUtils } from '../lib/beUtils'
 import { TestConfigType } from '../types/fe/globalTypes'
 import { RespBody } from '../types/be/respBodyType'

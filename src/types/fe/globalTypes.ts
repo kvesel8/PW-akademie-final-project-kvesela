@@ -3,10 +3,8 @@ export type TestConfigType = {
     apiEndpoint: string
 
     components: {
-        activities : string
         authors: string
         authorsBookId: string
-        books: string
         coverPhotos: string
         coverPhotosBooksId: string
     }
