@@ -48,7 +48,7 @@ export class UsersSom extends BeUtils{
 
     public async createUser(data:Object){
         await this._test.step('Create a new user', async() => {
-            const postRes = await this._httpPost(`${this._testConfig.apiEndpoint}/v1/Users`, {data:data})
+            await this._httpPost(`${this._testConfig.apiEndpoint}/v1/Users`, {data:data})
         })
     }
 
@@ -72,7 +72,7 @@ export class UsersSom extends BeUtils{
 
     public async updateUser(id: string | number, data: string | Buffer | Serializable ){
         await this._test.step("Update user by id", async() =>{
-            const patchRes = await this._httpPatch(`${this._testConfig.apiEndpoint}/v1/Users/${id.toString()}`, {data:data})
+            const patchRes = await this._httpPut(`${this._testConfig.apiEndpoint}/v1/Users/${id.toString()}`, {data:data})
         })
     }
 

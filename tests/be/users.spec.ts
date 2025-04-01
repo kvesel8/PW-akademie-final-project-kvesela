@@ -22,27 +22,27 @@ test.only('Display list of all users', async ({request}) => {
 test('Add new user', async ({request}) => {
     const users = new UsersSom(request, test, testConfig)
 
-    users.createUser(usersData)
+    await users.createUser(usersData)
 })
 
 test('Get information about user with userid', async({request}) => {
     const users = new UsersSom(request, test, testConfig)
     const genId = getRandomInt(1,10)
 
-    users.getUserById(genId) //funkce ktera vraci nahodne generovane cislo? kde vzit id uzivatelu? nacist si je do souboru? nebo z response do promene?
+    await users.getUserById(genId) //funkce ktera vraci nahodne generovane cislo? kde vzit id uzivatelu? nacist si je do souboru? nebo z response do promene?
 })
 
 test ('Update user', async({request}) => {
     const users = new UsersSom(request, test, testConfig)
     const genId = getRandomInt(1,10)
 
-    users.updateUser(genId, usersData) //funkce na generovani nahodnych jmen a hesel?? - mam, ale jak to napsaovat na dat. strukturu
+   await users.updateUser(genId, usersData) //funkce na generovani nahodnych jmen a hesel?? - mam, ale jak to napsaovat na dat. strukturu
 })
 
 test('Delete user with id', async ({request}) =>{
     const users = new UsersSom(request, test, testConfig)
     const genId = getRandomInt(1,10)
 
-    users.deleteUser(genId) 
+   await users.deleteUser(genId) 
 })
 
