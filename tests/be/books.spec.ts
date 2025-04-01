@@ -13,7 +13,7 @@ const testConfig: TestConfigType = require(`../../data/envs/config_${env}.json`)
 const jsonData = JSON.parse(JSON.stringify(require('../../data/json/be/booksData.json')))
 const booksData = jsonData as BooksDataType
 
-test.only('Get list of books', async({request}) => {
+test('Get list of books', async({request}) => {
     const books = new BooksSom(request, test, testConfig)
 
     await books.getListOfBooks()

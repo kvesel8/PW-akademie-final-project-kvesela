@@ -1,10 +1,10 @@
 import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, APIRequestContext} from '@playwright/test'
 import { BeUtils } from '../lib/beUtils'
 import { TestConfigType } from '../types/fe/globalTypes'
-import { RespBody } from '../types/be/respBodyType'
+import { RespBodyType } from '../types/be/respBodyType'
 
-let resBodyBuffer: RespBody['bodyBuffer']
-let resBody: RespBody['body']
+let resBodyBuffer: RespBodyType['bodyBuffer']
+let resBody: RespBodyType['body']
 let resBodyBufferToString
 
 export class BooksSom extends BeUtils{
@@ -57,7 +57,6 @@ export class BooksSom extends BeUtils{
                     console.error(resBodyBufferToString)
                 }
             }
-
             console.log(resBody)
         })
     }

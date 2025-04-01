@@ -1,10 +1,10 @@
 import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, APIRequestContext, APIResponse} from '@playwright/test'
 import { BeUtils } from '../lib/beUtils';
-import { RespBody } from '../../src/types/be/respBodyType'
+import { RespBodyType } from '../../src/types/be/respBodyType'
 import { TestConfigType } from '../../src/types/fe/globalTypes'
 
-let resBodyBuffer: RespBody['bodyBuffer']
-let resBody: RespBody['body']
+let resBodyBuffer: RespBodyType['bodyBuffer']
+let resBody: RespBodyType['body']
 let resBodyBufferToString
 
 export class ActivitiesSom extends BeUtils{

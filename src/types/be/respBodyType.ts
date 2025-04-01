@@ -1,6 +1,6 @@
 import { Serializable } from "node:child_process"
 
-export type RespBody = {
+export type RespBodyType = {
     headers: { [key: string]: string },
     headersArray: Array<{ name: string, value: string }>,
     ok: boolean,

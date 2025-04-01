@@ -1,19 +1,19 @@
 import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, APIRequestContext, expect} from '@playwright/test'
-import { RespBody } from '../../src/types/be/respBodyType'
+import { RespBodyType } from '../../src/types/be/respBodyType'
 import { BeUtils } from '../../src/lib/beUtils'
 import { TestConfigType } from '../../src/types/fe/globalTypes'
 import { Serializable } from 'node:child_process'
 
-let resHeaders: RespBody['headers']
-let resHeadersArray: RespBody['headersArray']
-let resOk: RespBody['ok']
-let resStatus: RespBody['status']
-let resStatusText: RespBody['statusText']
-let resUrl: RespBody['url']
-let resJson: RespBody['json'] = Promise.resolve({})
-let resText: RespBody['text']
-let resBodyBuffer: RespBody['bodyBuffer']
-let resBody: RespBody['body']
+let resHeaders: RespBodyType['headers']
+let resHeadersArray: RespBodyType['headersArray']
+let resOk: RespBodyType['ok']
+let resStatus: RespBodyType['status']
+let resStatusText: RespBodyType['statusText']
+let resUrl: RespBodyType['url']
+let resJson: RespBodyType['json'] = Promise.resolve({})
+let resText: RespBodyType['text']
+let resBodyBuffer: RespBodyType['bodyBuffer']
+let resBody: RespBodyType['body']
 let resBodyBufferToString 
 
 export class UsersSom extends BeUtils{
