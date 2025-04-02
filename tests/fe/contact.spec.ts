@@ -1,5 +1,5 @@
 import { test } from '../fe/helpers/base'
-import { ContactDataType } from '../../src/types/fe/contactDataTypes'
+import { ContactDataType } from '../../src/types/fe/feDataTypes'
 
 
 const jsonData = JSON.parse(JSON.stringify(require('../data/json/contactData.json')))

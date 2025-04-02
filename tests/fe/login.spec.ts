@@ -1,7 +1,7 @@
 import { test } from '@playwright/test'
 import { HomePagePom } from '../../src/pom/homePagePom'
 import { LoginPom } from '../../src/pom/loginPom'
-import { User } from '../../src/types/fe/userDataTypes'
+import { UserType } from '../../src/types/fe/feDataTypes'
 import dotenv from 'dotenv'
 import { TestConfigType, TestSecretsType } from '../../src/types/fe/globalTypes'
 
@@ -12,7 +12,7 @@ const env = process.env.ENV || 'dev'
 const testConfig: TestConfigType = require(`../../data/envs/config_${env}.json`)
 
 const jsonData = JSON.parse(JSON.stringify(require('../data/user/userData.json')))
-const user = jsonData as User
+const user = jsonData as UserType
 
 const testSecrets: TestSecretsType = {
     username: process.env.UNAME,

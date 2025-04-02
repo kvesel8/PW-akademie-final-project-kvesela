@@ -1,9 +1,9 @@
 import { test } from './helpers/base'
-import { User } from '../../src/types/fe/userDataTypes'
+import { UserType } from '../../src/types/fe/feDataTypes'
 
 
 const jsonData = JSON.parse(JSON.stringify(require('../../data/json/fe/userData.json')))
-const user = jsonData as User
+const user = jsonData as UserType
 
 test.describe('Login tests', () => {
 

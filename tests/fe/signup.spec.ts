@@ -1,10 +1,10 @@
 import { test } from '../fe/helpers/base'
-import { User } from '../../src/types/fe/userDataTypes'
+import { UserType } from '../../src/types/fe/feDataTypes'
 import { generateUsername, generatePassword } from '../../src/utils/randomValues'
 
 
 const jsonData = JSON.parse(JSON.stringify(require("../../data/json/userData.json")))
-const user = jsonData as User
+const user = jsonData as UserType
 
 test.describe('Sign up tests', () =>{
 

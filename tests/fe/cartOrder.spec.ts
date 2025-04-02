@@ -1,5 +1,5 @@
 import { test } from '../fe/helpers/base'
-import { PlaceOrderFormType } from '../../src/types/fe/placeOrderFormTypes'
+import { PlaceOrderFormType } from '../../src/types/fe/feDataTypes'
 
 
 const jsonData = JSON.parse(JSON.stringify(require('../../data/json/placeOrderFromData.json')))
