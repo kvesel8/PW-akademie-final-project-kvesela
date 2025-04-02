@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import { TestConfigType, TestSecretsType } from '../../../src/types/fe/globalTypes'
 import { LoginPom } from '../../../src/pom/loginPom'
 import { HomePagePom } from '../../../src/pom/homePagePom'
+import { SignUpPom } from '../../../src/pom/signUpPom'
 
 
 dotenv.config({override:true})
@@ -13,6 +14,7 @@ const testConfig: TestConfigType = require(`../../../data/envs/config_${env}.jso
 type TestFixtures = {
     login: LoginPom,
     homePage: HomePagePom,
+    signUp: SignUpPom,
     configs: TestConfigType,
     secrets: TestSecretsType
 }
@@ -30,16 +32,7 @@ export const test = base.extend<TestFixtures>({
     configs:[
         {
             url: testConfig.url,
-            apiEndpoint: testConfig.apiEndpoint,
-
-            components: {
-                activities: testConfig.components.activities,
-                authors: testConfig.components.authors,
-                authorsBookId:testConfig.components.authorsBookId,
-                books: testConfig.components.books,
-                coverPhotos: testConfig.components.coverPhotos,
-                coverPhotosBooksId: testConfig.components.coverPhotosBooksId
-            }
+            apiEndpoint: testConfig.apiEndpoint
         },
         {
             option:true
@@ -55,6 +48,11 @@ export const test = base.extend<TestFixtures>({
        await use(
         new HomePagePom(page, test, configs)
        ) 
+    },
+    signUp: async({page, secrets}, use) => {
+        await use (
+           new SignUpPom(page, test, secrets) 
+        )
     }
 })
 
