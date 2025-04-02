@@ -4,6 +4,9 @@ import { TestConfigType, TestSecretsType } from '../../../src/types/fe/globalTyp
 import { LoginPom } from '../../../src/pom/loginPom'
 import { HomePagePom } from '../../../src/pom/homePagePom'
 import { SignUpPom } from '../../../src/pom/signUpPom'
+import { ContactPom } from '../../../src/pom/contactPom'
+import { CartOrderPom } from '../../../src/pom/cartOrderPom'
+import { AboutUsPom } from '../../../src/pom/aboutUsPom'
 
 
 dotenv.config({override:true})
@@ -15,6 +18,9 @@ type TestFixtures = {
     login: LoginPom,
     homePage: HomePagePom,
     signUp: SignUpPom,
+    contact: ContactPom,
+    cartOrder: CartOrderPom,
+    aboutUs: AboutUsPom,
     configs: TestConfigType,
     secrets: TestSecretsType
 }
@@ -52,6 +58,21 @@ export const test = base.extend<TestFixtures>({
     signUp: async({page, secrets}, use) => {
         await use (
            new SignUpPom(page, test, secrets) 
+        )
+    },
+    contact: async({page}, use) => {
+        await use (
+            new ContactPom(page, test)
+        )
+    },
+    cartOrder: async({page}, use) => {
+        await use (
+            new CartOrderPom(page, test)
+        )
+    },
+    aboutUs: async({page}, use) => {
+        await use(
+            new AboutUsPom(page, test)
         )
     }
 })

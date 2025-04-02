@@ -1,73 +1,40 @@
-import { test } from '@playwright/test'
-import { HomePagePom } from '../../src/pom/homePagePom'
-import { ContactPom } from '../../src/pom/contactPom'
-import { AboutUsPom } from '../../src/pom/aboutUsPom'
-import { CartOrderPom } from '../../src/pom/cartOrderPom'
-import { LoginPom } from '../../src/pom/loginPom'
-import { SignUpPom } from '../../src/pom/signUpPom'
-import dotenv from 'dotenv'
-import { TestConfigType, TestSecretsType } from '../../src/types/fe/globalTypes'
-
-
-dotenv.config({ override: true})
-
-const env = process.env.ENV || 'dev'
-const testConfig: TestConfigType = require(`../../data/envs/config_${env}.json`)
-
-const testSecrets: TestSecretsType = {
-    username: process.env.UNAME,
-    password: process.env.PWORD
-}
+import { test } from '../fe/helpers/base'
 
 test.describe('Navigation tests', ()=>{
 
-    let homePage
-    let signUp
-    let login
-    let cart
-    let aboutUs
-    let contact
-
-    test.beforeEach('Initialization of poms and navigating to homepage', async ({page}) => {
-        homePage  = new HomePagePom(page, test, testConfig)
-        signUp = new SignUpPom(page, test, testSecrets)
-        login = new LoginPom(page, test, testSecrets)
-        cart = new CartOrderPom(page, test)
-        aboutUs = new AboutUsPom(page, test)
-        contact = new ContactPom(page, test)
-
+    test.beforeEach('Navigating to homepage', async ({homePage}) => {
         await homePage.navigateToHomePage()
     })
 
-    test('Navigate to contact form',async({})=>{
+    test('Navigate to contact form',async({contact})=>{
         await contact.displayContactForm()
         await contact.clickCloseButton()
     })
 
-    test('Navigate to About us', async({})=>{
+    test('Navigate to About us', async({aboutUs})=>{
         await aboutUs.displayAboutUs()
         await aboutUs.clickCloseButton()
     })
 
-    test('Navigate to cart', async({}) =>{
-        await cart.displayCart()
+    test('Navigate to cart', async({cartOrder}) =>{
+        await cartOrder.displayCart()
     })
 
-    test('Navigate to login form', async({}) =>{
+    test('Navigate to login form', async({login}) =>{
         await login.displayLoginForm()
         await login.clickCloseButton()
     })
 
-    test('Navigate to sign up form', async({}) =>{
+    test('Navigate to sign up form', async({signUp}) =>{
         await signUp.displaySignUpForm()
         await signUp.clickCloseButton()
     })
 
-    test('Select a product category', async({}) => {
+    test('Select a product category', async({homePage}) => {
         await homePage.displayCategory()
     })
 
-    test('Display detail of an product', async({}) => {
+    test('Display detail of an product', async({homePage}) => {
         await homePage.displayItemDetail()
     })
 })
