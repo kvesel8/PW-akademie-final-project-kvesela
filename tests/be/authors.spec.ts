@@ -1,6 +1,6 @@
 import { test } from '@playwright/test'
 import { AuthorsSom } from '../../src/som/authorsSom'
-import { AuthorsDataType } from '../../src/types/be/authorsDataType'
+import { AuthorsDataType } from '../../src/types/be/beDataType'
 import dotenv from 'dotenv'
 import { getRandomInt } from '../../src/utils/randomValues'
 

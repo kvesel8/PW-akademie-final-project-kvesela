@@ -1,6 +1,6 @@
 import { test } from '@playwright/test'
 import { CoverPhotosSom } from '../../src/som/coverPhotosSom'
-import { CoverPhotosDataType } from '../../src/types/be/coverPhotosDataType'
+import { CoverPhotosDataType } from '../../src/types/be/beDataType'
 import dotenv from 'dotenv'
 import { getRandomInt } from '../../src/utils/randomValues'
 

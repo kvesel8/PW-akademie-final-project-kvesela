@@ -1,6 +1,6 @@
 import { test } from '@playwright/test'
 import { ActivitiesSom } from '../../src/som/activitiesSom'
-import { ActivitiesDataType } from '../../src/types/be/activitiesDataType'
+import { ActivitiesDataType } from '../../src/types/be/beDataType'
 import dotenv from 'dotenv'
 import { TestConfigType } from '../../src/types/fe/globalTypes'
 import { getRandomInt } from '../../src/utils/randomValues'

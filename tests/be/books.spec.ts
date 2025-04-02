@@ -1,7 +1,7 @@
 import { test } from '@playwright/test'
 import { BooksSom } from '../../src/som/booksSom'
 import { getRandomInt } from '../../src/utils/randomValues'
-import {BooksDataType } from '../../src/types/be/booksDataType'
+import {BooksDataType } from '../../src/types/be/beDataType'
 import dotenv from 'dotenv'
 import { TestConfigType } from '../../src/types/fe/globalTypes'
 

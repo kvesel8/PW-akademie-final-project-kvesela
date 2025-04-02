@@ -2,7 +2,7 @@ import { test} from '@playwright/test'
 import { UsersSom } from '../../src/som/usersSom'
 import { TestConfigType } from '../../src/types/fe/globalTypes'
 import dotenv from 'dotenv'
-import { usersDataType } from '../../src/types/be/usersDataType'
+import { UsersDataType } from '../../src/types/be/beDataType'
 import { getRandomInt } from '../../src/utils/randomValues'
 
 dotenv.config({override:true})
@@ -10,7 +10,7 @@ const env = process.env.ENV || 'dev'
 const testConfig: TestConfigType = require(`../../data/envs/config_${env}.json`)
 
 const jsonData = JSON.parse(JSON.stringify(require('../../data/json/be/usersData.json')))
-const usersData = jsonData as usersDataType
+const usersData = jsonData as UsersDataType
 
 
 test('Display list of all users', async ({request}) => {
