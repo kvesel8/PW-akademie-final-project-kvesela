@@ -1,5 +1,5 @@
 import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, Page, expect } from '@playwright/test'
-import { cartOrderSel } from '../../data/selectors/cartOrderSel'
+import { cartOrderSel } from '../../data/selectors/feSel'
 import { FeUtils } from '../lib/feUtils'
 
 const url = 'https://www.demoblaze.com/cart.html'

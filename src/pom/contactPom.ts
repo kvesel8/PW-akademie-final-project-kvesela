@@ -1,5 +1,5 @@
 import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, Page, expect } from '@playwright/test'
-import { contactSel } from '../../data/selectors/contactSel'
+import { contactSel } from '../../data/selectors/feSel'
 import { FeUtils } from '../lib/feUtils'
 
 export class ContactPom extends FeUtils {

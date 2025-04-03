@@ -1,5 +1,5 @@
-import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, Page, expect } from '@playwright/test'
-import { aboutUsSel } from '../../data/selectors/aboutUsSel'
+import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, Page} from '@playwright/test'
+import { aboutUsSel } from '../../data/selectors/feSel'
 import { FeUtils } from '../lib/feUtils'
 
 export class AboutUsPom extends FeUtils{

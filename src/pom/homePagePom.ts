@@ -1,4 +1,4 @@
-import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, Page, expect} from "@playwright/test";
+import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, Page} from "@playwright/test";
 import { getRandomInt, selectRandomValueFromArray } from '../utils/randomValues'
 import { TestConfigType } from "../../src/types/fe/globalTypes";
 import { FeUtils } from '../../src/lib/feUtils'

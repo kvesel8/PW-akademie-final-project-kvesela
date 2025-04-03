@@ -1,5 +1,5 @@
 import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, Page, expect } from '@playwright/test'
-import { loginSel } from '../../data/selectors/loginSel'
+import { loginSel } from '../../data/selectors/feSel'
 import { TestSecretsType } from '../../src/types/fe/globalTypes'
 import { FeUtils } from '../lib/feUtils'
 
