@@ -14,7 +14,7 @@ dotenv.config({override:true})
 const env = process.env.ENV || 'dev'
 const testConfig: TestConfigType = require(`../../../data/envs/config_${env}.json`)
 
-type TestFixtures = {
+type FeTestFixtures = {
     login: LoginPom,
     homePage: HomePagePom,
     signUp: SignUpPom,
@@ -25,7 +25,7 @@ type TestFixtures = {
     secrets: TestSecretsType
 }
 
-export const test = base.extend<TestFixtures>({
+export const test = base.extend<FeTestFixtures>({
     secrets:[
         {
             username: process.env.UNAME,
@@ -45,13 +45,13 @@ export const test = base.extend<TestFixtures>({
         }
     ],
     login: async({page, secrets}, use) => {
-        await use(
+        await use (
             new LoginPom(page, test, secrets),
            
         )
     },
     homePage: async({page, configs}, use) => {
-       await use(
+       await use (
         new HomePagePom(page, test, configs)
        ) 
     },
@@ -71,7 +71,7 @@ export const test = base.extend<TestFixtures>({
         )
     },
     aboutUs: async({page}, use) => {
-        await use(
+        await use (
             new AboutUsPom(page, test)
         )
     }
