@@ -13,7 +13,8 @@ export class ContactPom extends FeUtils {
 
     public async displayContactForm(){
         await this._test.step('Display contact form', async() => {
-            await this._clickBySelector(contactSel.CONTACT_FORM)
+            //await this._clickBySelector(contactSel.CONTACT_FORM)
+            await this._page.getByRole('link', { name: `${contactSel.CONTACT_FORM}` }).click()
         })
     }
 
@@ -43,7 +44,7 @@ export class ContactPom extends FeUtils {
 
     public async clickCloseButton(){
         await this._test.step('Click close button to close contact form', async() => {
-            await this._page.getByLabel(contactSel.SEND_BUTTON).getByText(contactSel.CLOSE_BUTTON).click()
+            await this._page.getByLabel('New message').getByText(`${contactSel.CLOSE_BUTTON}`).click()
         })
     }
 

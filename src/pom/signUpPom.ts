@@ -35,7 +35,7 @@ export class SignUpPom extends FeUtils {
 
     public async clickSignUpButton(){
         await this._test.step('Click on signup button', async() => {
-            await this._page.getByText(signUpSel.SIGNUP_BUTTON).first().click()
+            await this._page.getByRole('button', { name: signUpSel.SIGNUP_BUTTON }).click()
         })
     }
 

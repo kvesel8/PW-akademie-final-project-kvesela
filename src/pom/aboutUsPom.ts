@@ -13,13 +13,13 @@ export class AboutUsPom extends FeUtils{
 
     public async displayAboutUs(){
         await this._test.step('Display About Us modal', async() => {
-            await this._page.getByText(aboutUsSel.ABOUTUS_MODAL).first().click()
+            await this._page.getByRole('link', { name: `${aboutUsSel.ABOUTUS_MODAL}` }).click()
         })
     }
 
     public async clickCloseButton(){
         await this._test.step('Click close button in about us modal', async() => {
-            await this._page.getByLabel(aboutUsSel.ABOUTUS_MODAL).getByText(aboutUsSel.CLOSE_BUTTON).click()
+            await this._page.locator('#videoModal').getByText(aboutUsSel.CLOSE_BUTTON, { exact: true }).click()
         })
     }
 }

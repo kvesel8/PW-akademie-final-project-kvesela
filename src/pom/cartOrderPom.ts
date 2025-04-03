@@ -2,7 +2,7 @@ import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerAr
 import { cartOrderSel } from '../../data/selectors/cartOrderSel'
 import { FeUtils } from '../lib/feUtils'
 
-const url = 'https://www.demoblaze.com/cart.html#'
+const url = 'https://www.demoblaze.com/cart.html'
 
 export class CartOrderPom extends FeUtils{
    
@@ -15,7 +15,7 @@ export class CartOrderPom extends FeUtils{
 
     public async displayCart(){
         await this._test.step('Display cart', async() => {
-            await this._clickBySelector(cartOrderSel.CART)
+            await this._page.getByRole('link', { name: cartOrderSel.CART }).click()
             await expect(this._page).toHaveURL(url)
         })
     }
