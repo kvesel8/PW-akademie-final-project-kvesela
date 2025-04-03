@@ -2,7 +2,7 @@ import { test } from '../fe/helpers/base'
 import { ContactDataType } from '../../src/types/fe/feDataTypes'
 
 
-const jsonData = JSON.parse(JSON.stringify(require('../data/json/contactData.json')))
+const jsonData = JSON.parse(JSON.stringify(require('../../data/json/fe/contactData.json')))
 const contactData = jsonData as ContactDataType
 
 test.describe('Contact form tests', () => {

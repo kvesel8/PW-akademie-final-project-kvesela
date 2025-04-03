@@ -15,14 +15,6 @@ export type UserType = {
      }   
 }
 
-export type HomePageType = {
-   CATEGORY: {
-      PHONES: number
-      LAPTOPS: number
-      MONITORS: number
-    }
-}
-
 export type PlaceOrderFormType = {
    name: string
    creditcard: number

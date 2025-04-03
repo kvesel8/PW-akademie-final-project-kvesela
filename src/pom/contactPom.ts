@@ -32,7 +32,7 @@ export class ContactPom extends FeUtils {
 
     public async fillMesage(message:string){
         await this._test.step('Fill message in contact form', async() => {
-            await this._fillBySelector(contactSel.MESSAGE_FIELD, message)
+            await this._page.getByRole('textbox', { name: contactSel.MESSAGE_FIELD}).fill(message)
         })
     }
 

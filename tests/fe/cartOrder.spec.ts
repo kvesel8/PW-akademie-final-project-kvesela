@@ -2,12 +2,12 @@ import { test } from '../fe/helpers/base'
 import { PlaceOrderFormType } from '../../src/types/fe/feDataTypes'
 
 
-const jsonData = JSON.parse(JSON.stringify(require('../../data/json/placeOrderFromData.json')))
+const jsonData = JSON.parse(JSON.stringify(require('../../data/json/fe/placeOrderFormData.json')))
 const placeOrderForm = jsonData as PlaceOrderFormType
 
 test.describe('Cart tests and place order tests', () =>{
 
-    test.beforeEach('Initialization of pom and navigate to homepage', async({homePage}) => {
+    test.beforeEach('Navigate to homepage', async({homePage}) => {
         homePage.navigateToHomePage()
     })
 

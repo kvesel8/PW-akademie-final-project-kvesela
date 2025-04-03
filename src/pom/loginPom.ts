@@ -36,7 +36,7 @@ export class LoginPom extends FeUtils {
 
     public async clickLoginButton(){
         await this._test.step('Click login button', async () => {
-            await this._page.getByText(loginSel.LOGIN_BUTTON).first().click()
+            await this._page.getByRole('button', { name: loginSel.LOGIN_BUTTON }). click()
         })
     }
 
