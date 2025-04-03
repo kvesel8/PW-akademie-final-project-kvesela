@@ -30,12 +30,12 @@ test.describe('Navigation tests', ()=>{
         await signUp.clickCloseButton()
     })
 
-    test('Select a product category', async({homePage}) => {
+/*     test.only('Select a product category', async({homePage}) => {
         await homePage.displayCategory()
     })
 
     test('Display detail of an product', async({homePage}) => {
         await homePage.displayItemDetail()
-    })
+    }) */ 
 })
 

@@ -17,9 +17,9 @@ export type UserType = {
 
 export type HomePageType = {
    CATEGORY: {
-      PHONES: string
-      LAPTOPS: string
-      MONITORS: string
+      PHONES: number
+      LAPTOPS: number
+      MONITORS: number
     }
 }
 
