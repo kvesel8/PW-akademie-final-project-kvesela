@@ -1,4 +1,4 @@
-import { test } from '../fe/helpers/base'
+import { test } from './feHelpers/base'
 import { ContactDataType } from '../../src/types/fe/feDataTypes'
 
 

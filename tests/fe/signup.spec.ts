@@ -1,4 +1,4 @@
-import { test } from '../fe/helpers/base'
+import { test } from './feHelpers/base'
 import { UserType } from '../../src/types/fe/feDataTypes'
 import { generateUsername, generatePassword } from '../../src/utils/randomValues'
 
