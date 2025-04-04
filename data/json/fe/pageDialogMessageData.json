@@ -1,0 +1,15 @@
+{
+    "signupMessage":{
+        "noUserNameOrPassword": "Please fill out Username and Password.",
+        "userExists": "This user already exist.",
+        "success":"Sign up successful."
+    },
+    "loginMessage":{
+        "noUserNameOrPassword": "Please fill out Username and Password.",
+        "invalidPassword": "Wrong password.",
+        "invalidUsername": "User does not exist."
+    },
+    "contactMessage":{
+        "success": "Thanks for the message!!"
+    }
+}

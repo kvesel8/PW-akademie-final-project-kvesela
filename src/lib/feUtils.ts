@@ -40,6 +40,21 @@ export class FeUtils {
         })
     }
 
+    protected async _checkPageDialogMessage(pagedialogMessage: string){
+        await this._test.step('Start to listen to page dialog', async() => {
+            this._page.on('dialog', async(dialog) =>{
+                const dialogMessage = dialog.message()
+               
+                if (dialogMessage === pagedialogMessage) {
+                    console.log('Dialog text verified successfully!')
+                } else {
+                    console.log('Dialog text verification failed')
+                }
+                await dialog.accept()
+            })
+        })
+    }
+
     protected async _endListenPageDialog(){
         await this._test.step('Stop to listen to page dialog', async() => {
             this._page.off('dialog', async() => {

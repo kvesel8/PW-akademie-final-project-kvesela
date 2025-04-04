@@ -46,4 +46,9 @@ export class SignUpPom extends FeUtils {
     }
     
     //pridat funkce na overeni zobrazeni spravne zpravy v modalnim okne prohlizece
+
+    public async checkSignUpDialogMessage(pagedialogMessage: string){
+        await this._test.step('Check the message displayed in dialog window after click Sign up button', async() => {            
+        })
+    }
 }

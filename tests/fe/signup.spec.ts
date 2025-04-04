@@ -1,10 +1,13 @@
 import { test } from './feHelpers/feBase'
-import { UserType } from '../../src/types/fe/feDataTypes'
+import { UserType, PageDialogMessageType } from '../../src/types/fe/feDataTypes'
 import { generateUsername, generatePassword } from '../../src/utils/randomValues'
 
 
-const jsonData = JSON.parse(JSON.stringify(require("../../data/json/fe/userData.json")))
-const user = jsonData as UserType
+const jsonUserData = JSON.parse(JSON.stringify(require("../../data/json/fe/userData.json")))
+const user = jsonUserData as UserType
+
+const jsonDialogMessage = JSON.parse(JSON.stringify(require('../../data/json/fe/pageDialogMessageData.json')))
+const dialogMessage = jsonDialogMessage as PageDialogMessageType
 
 test.describe('Sign up tests', () =>{
 
@@ -12,15 +15,15 @@ test.describe('Sign up tests', () =>{
         await homePage.navigateToHomePage()
     })
 
-    test('Sign up the new user', async ({homePage, signUp}) => {        
+    test.only('Sign up the new user', async ({homePage, signUp}) => {        
         const username = generateUsername()
         const password = generatePassword(5)
 
         await signUp.displaySignUpForm()
-        await homePage.pageDialogOn()
         await signUp.fillUserName(username)
         await signUp.fillPassword(password)
         await signUp.clickSignUpButton()
+        await signUp.checkSignUpDialogMessage(dialogMessage.signupMessage.success)
         await homePage.pageDialogOff()
     })
 
@@ -29,6 +32,7 @@ test.describe('Sign up tests', () =>{
         await homePage.pageDialogOn()
         await signUp.fillPassword(user.validUsername_validPassword.password)
         await signUp.clickSignUpButton()
+        await signUp.checkSignUpDialogMessage(dialogMessage.signupMessage.noUserNameOrPassword)
         await homePage.pageDialogOff()
     })
 
@@ -37,6 +41,7 @@ test.describe('Sign up tests', () =>{
         await homePage.pageDialogOn()
         await signUp.fillUserName(user.validUsername_validPassword.username)
         await signUp.clickSignUpButton()
+        await signUp.checkSignUpDialogMessage(dialogMessage.signupMessage.noUserNameOrPassword)
         await homePage.pageDialogOff()
     })
 
@@ -44,6 +49,7 @@ test.describe('Sign up tests', () =>{
         await signUp.displaySignUpForm()
         await homePage.pageDialogOn()
         await signUp.clickSignUpButton()
+        await signUp.checkSignUpDialogMessage(dialogMessage.signupMessage.noUserNameOrPassword)
         await homePage.pageDialogOff()
     })
 
@@ -53,6 +59,7 @@ test.describe('Sign up tests', () =>{
         await signUp.fillUserName(user.validUsername_validPassword.username)
         await signUp.fillPassword(user.validUsername_validPassword.password)
         await signUp.clickSignUpButton()
+        await signUp.checkSignUpDialogMessage(dialogMessage.signupMessage.userExists)
         await homePage.pageDialogOff()
     })
 })

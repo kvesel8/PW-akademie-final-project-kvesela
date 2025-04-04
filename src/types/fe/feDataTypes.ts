@@ -25,3 +25,19 @@ export type ContactDataType = {
    contactName: string
    message: string
 }
+
+export type PageDialogMessageType = {
+   signupMessage:{
+        noUserNameOrPassword: string
+        userExists: string
+        success: string
+    },
+    loginMessage:{
+        noUserNameOrPassword: string
+        invalidPassword: string
+        invalidUsername: string
+    },
+    contactMessage:{
+        success: string
+    }
+}
