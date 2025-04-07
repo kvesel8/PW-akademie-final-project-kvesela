@@ -15,7 +15,7 @@ test.describe('Sign up tests', () =>{
         await homePage.navigateToHomePage()
     })
 
-    test.only('Sign up the new user', async ({homePage, signUp}) => {        
+    test('Sign up the new user', async ({homePage, signUp}) => {        
         const username = generateUsername()
         const password = generatePassword(5)
 
