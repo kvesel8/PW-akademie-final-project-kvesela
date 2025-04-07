@@ -32,9 +32,9 @@ export class HomePagePom extends FeUtils {
     })
   }
  
-  public async displayCategory(){ //nefunkcni
+  public async displayCategory(){
     await this._test.step('Display one of the category', async() =>{
-      const allCategories = await this._page.locator(`a[onclick="byCat."]`).allInnerTexts()
+      const allCategories: string[] = await this._page.locator(`a[onclick*="byCat"]`).allTextContents()
       const category = selectRandomValueFromArray(allCategories)
       await this._page.getByText(category).first().click({timeout:10_000})
       await this._page.pause()
