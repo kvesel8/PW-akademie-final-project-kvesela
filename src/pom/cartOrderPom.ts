@@ -52,7 +52,8 @@ export class CartOrderPom extends FeUtils{
 
     public async clickPurchaseButton(){
         await this._test.step('Click the purchase button in place order form', async() => {
-            await this._clickBySelector(cartOrderSel.PURCHASE_BUTTON)
+            await this._page.getByRole('button', { name: cartOrderSel.PURCHASE_BUTTON }).click()
+            await this._page.pause()
         })
     }
 

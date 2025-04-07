@@ -39,7 +39,7 @@ export const cartOrderSel = {
     PLACEORDER_BUTTON: 'button[data-target="#orderModal"]',
     NAME_FIELD: 'input[id="name"]',
     CREDITCARD_FIELD: 'input[id="card"]',
-    PURCHASE_BUTTON: 'button[onclick="purchaseOrder()"]'
+    PURCHASE_BUTTON: 'Purchase'
 }
 
 export const aboutUsSel = {

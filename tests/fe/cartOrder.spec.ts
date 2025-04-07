@@ -23,7 +23,7 @@ test.describe('Cart tests and place order tests', () =>{
         await cartOrder.deleteItemFromCart()
     })
 
-    test.only('Send filled place order formular without item in cart', async({cartOrder}) =>{
+    test('Send filled place order formular without item in cart', async({cartOrder}) =>{
         await cartOrder.displayCart()
         await cartOrder.displayPlaceOrderForm()
         await cartOrder.fillName(placeOrderForm.name)
@@ -59,7 +59,7 @@ test.describe('Cart tests and place order tests', () =>{
         await cartOrder.clickPurchaseButton() 
     })
 
-    test('Send place order formular without name and credit card', async({homePage, cartOrder}) =>{
+    test.only('Send place order formular without name and credit card', async({homePage, cartOrder}) =>{
         await homePage.displayItemDetail()
         await cartOrder.addItemToCart()
         await cartOrder.displayCart()
