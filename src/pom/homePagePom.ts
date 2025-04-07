@@ -1,4 +1,4 @@
-import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, Page} from "@playwright/test";
+import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, Page, expect} from "@playwright/test";
 import { getRandomInt, selectRandomValueFromArray } from '../utils/randomValues'
 import { TestConfigType } from "../../src/types/fe/globalTypes";
 import { FeUtils } from '../../src/lib/feUtils'
@@ -18,20 +18,21 @@ export class HomePagePom extends FeUtils {
   public async navigateToHomePage() {
     await this._test.step("Navigate to home page", async () => {
       await this._goTo(this._testConfig.url)
-     // await expect(this._page.url()).toContain(this._testConfig.url);
+      expect(this._page.url()).toContain(this._testConfig.url);
     });
   }
-  //klika se furt na prvni polozku - chyba v selektoru - opravit
+
   public async displayItemDetail(){
     await this._test.step('Display Item detail', async() => {
-      const totalNumberOfElements = await this._page.locator(`a[href="prod.html?idp_=\.*"]`).count()
+      const searchedElement = this._page.locator(`a[href*="prod.html?idp_="]`).and(this._page.locator('[class = "hrefch"]'))
+      const totalNumberOfElements = await searchedElement.count()
       const randomNumber = getRandomInt(1,totalNumberOfElements)
       await this._page.waitForLoadState('load')
-      await this._page.locator(`a[href="prod.html?idp_=${randomNumber}"]`).first().click()
+      await this._page.locator(`a[href="prod.html?idp_=${randomNumber}"]`).nth(1).click()
     })
   }
  
-  public async displayCategory(){
+  public async displayCategory(){ //nefunkcni
     await this._test.step('Display one of the category', async() =>{
       const allCategories = await this._page.locator(`a[onclick="byCat."]`).allInnerTexts()
       const category = selectRandomValueFromArray(allCategories)

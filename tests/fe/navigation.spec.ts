@@ -32,10 +32,10 @@ test.describe('Navigation tests', ()=>{
 
 /*     test.only('Select a product category', async({homePage}) => {
         await homePage.displayCategory()
-    })
+    })*/
 
     test('Display detail of an product', async({homePage}) => {
         await homePage.displayItemDetail()
-    }) */ 
+    }) 
 })
 
