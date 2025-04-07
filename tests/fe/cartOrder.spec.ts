@@ -8,7 +8,7 @@ const placeOrderForm = jsonData as PlaceOrderFormType
 test.describe('Cart tests and place order tests', () =>{
 
     test.beforeEach('Navigate to homepage', async({homePage}) => {
-        homePage.navigateToHomePage()
+        await homePage.navigateToHomePage()
     })
 
     test('Add item in cart',{tag:'@add_to_cart'}, async({homePage, cartOrder}) => {
@@ -23,11 +23,11 @@ test.describe('Cart tests and place order tests', () =>{
         await cartOrder.deleteItemFromCart()
     })
 
-    test('Send filled place order formular without item in cart', async({cartOrder}) =>{
+    test.only('Send filled place order formular without item in cart', async({cartOrder}) =>{
         await cartOrder.displayCart()
         await cartOrder.displayPlaceOrderForm()
         await cartOrder.fillName(placeOrderForm.name)
-        await cartOrder.fillCreditCard(placeOrderForm.creditcard)
+        await cartOrder.fillCreditCard(placeOrderForm.creditCard)
         await cartOrder.clickPurchaseButton()
     })
 
@@ -37,7 +37,7 @@ test.describe('Cart tests and place order tests', () =>{
         await cartOrder.displayCart()
         await cartOrder.displayPlaceOrderForm()
         await cartOrder.fillName(placeOrderForm.name)
-        await cartOrder.fillCreditCard(placeOrderForm.creditcard)
+        await cartOrder.fillCreditCard(placeOrderForm.creditCard)
         await cartOrder.clickPurchaseButton()        
     })
 
@@ -46,7 +46,7 @@ test.describe('Cart tests and place order tests', () =>{
         await cartOrder.addItemToCart()
         await cartOrder.displayCart()
         await cartOrder.displayPlaceOrderForm()
-        await cartOrder.fillCreditCard(placeOrderForm.creditcard)
+        await cartOrder.fillCreditCard(placeOrderForm.creditCard)
         await cartOrder.clickPurchaseButton()    
     })
 

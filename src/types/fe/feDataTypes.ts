@@ -17,7 +17,7 @@ export type UserType = {
 
 export type PlaceOrderFormType = {
    name: string
-   creditcard: number
+   creditCard: number
 }
 
 export type ContactDataType = {

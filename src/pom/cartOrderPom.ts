@@ -15,7 +15,7 @@ export class CartOrderPom extends FeUtils{
 
     public async displayCart(){
         await this._test.step('Display cart', async() => {
-            await this._page.getByRole('link', { name: cartOrderSel.CART }).click()
+            await this._page.getByRole('link', { name: cartOrderSel.CART, exact:true }).click()
             await expect(this._page).toHaveURL(url)
         })
     }
@@ -44,7 +44,7 @@ export class CartOrderPom extends FeUtils{
         })
     }
 
-    public async fillCreditCard(card:number){
+    public async fillCreditCard(card: string | number){
         await this._test.step('Fill credit card number in place order form', async() => {
             await this._fillBySelector(cartOrderSel.CREDITCARD_FIELD, card)
         })
