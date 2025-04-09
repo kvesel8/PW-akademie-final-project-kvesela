@@ -5,7 +5,7 @@ import { getRandomInt } from '../../src/utils/randomValues'
 const jsonData = JSON.parse(JSON.stringify(require('../../data/json/be/authorsData.json')))
 const authorsData = jsonData as AuthorsDataType
 
-test.only('Get list of authors', async({authors}) => {
+test('Get list of authors', async({authors}) => {
     await authors.getListOfAuthors()
 })
 

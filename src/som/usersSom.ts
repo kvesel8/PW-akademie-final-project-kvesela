@@ -4,14 +4,7 @@ import { BeUtils } from '../../src/lib/beUtils'
 import { TestConfigType } from '../../src/types/fe/globalTypes'
 import { Serializable } from 'node:child_process'
 
-let resHeaders: RespBodyType['headers']
-let resHeadersArray: RespBodyType['headersArray']
-let resOk: RespBodyType['ok']
-let resStatus: RespBodyType['status']
-let resStatusText: RespBodyType['statusText']
-let resUrl: RespBodyType['url']
-let resJson: RespBodyType['json'] = Promise.resolve({})
-let resText: RespBodyType['text']
+
 let resBodyBuffer: RespBodyType['bodyBuffer']
 let resBody: RespBodyType['body']
 let resBodyBufferToString 
