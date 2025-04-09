@@ -45,7 +45,7 @@ export class FeUtils {
             this._page.on('dialog', async(dialog) =>{
                 const dialogMessage = dialog.message()
                
-                if (dialogMessage === pagedialogMessage) {
+                if (dialogMessage == pagedialogMessage) {
                     console.log('Dialog text verified successfully!')
                 } else {
                     console.log('Dialog text verification failed')
