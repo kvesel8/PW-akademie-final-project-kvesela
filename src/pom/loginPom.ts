@@ -17,33 +17,23 @@ export class LoginPom extends FeUtils {
     }
 
     public async displayLoginForm(){
-        await this._test.step('Display of login form', async () => {
-            await this._clickBySelector(loginSel.LOGIN_FORM)
-        })
+        await this._clickBySelector(loginSel.LOGIN_FORM)
     }
 
     public async fillUsername( username: string){
-        await this._test.step('Fill username in login form', async () =>{
-            await this._fillBySelector(loginSel.USERNAME_FIELD, username)
-        })
+        await this._fillBySelector(loginSel.USERNAME_FIELD, username)
     }
 
     public async fillPassword(password: string){
-        await this._test.step('Fill user password', async () => {
-            await this._fillBySelector(loginSel.PASSWORD_FIELD, password)
-        })
+        await this._fillBySelector(loginSel.PASSWORD_FIELD, password)
     }
 
     public async clickLoginButton(){
-        await this._test.step('Click login button', async () => {
-            await this._page.getByRole('button', { name: loginSel.LOGIN_BUTTON }). click()
-        })
+        await this._clickByRole('button', loginSel.LOGIN_BUTTON)
     }
 
     public async clickCloseButton(){
-        await this._test.step('Click close button to close login modal', async () => {
-            await this._page.getByLabel(loginSel.LOGIN_BUTTON).getByText(loginSel.CLOSE_BUTTON).click()
-        })
+        await this._clickByLabelAndText(loginSel.LOGIN_BUTTON, loginSel.CLOSE_BUTTON)
     }
 
     public async logOut(){

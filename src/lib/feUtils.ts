@@ -24,6 +24,17 @@ export class FeUtils {
             await this._page.locator(selector).nth(0).click()
         })
     }
+     protected async _clickByLabelAndText(selector: string, text: string){
+        await this._test.step("Click by label and text", async() => {
+            await this._page.getByLabel(selector).getByText(text).click()
+        })
+     }
+
+     protected async _clickByRole(role: any, name: string){
+        await this._test.step('Click by role', async() => {
+            await this._page.getByRole(role,{ name: name}).click()
+        })
+     }
 
     protected async _fillBySelector(selector:string, value: string | number){
         await this._test.step('Fill value by selector', async () => {
