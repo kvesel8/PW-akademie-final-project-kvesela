@@ -1,13 +1,16 @@
 # Local storage
 node_modules/
-.vscode
+.vscode/
 .DS_Store
 dist/
 deffer/
+tmp/
 
 # Test results
 playwright-report/
 test-results/
+screenshots/
+videos/
 
 # Security
 .env*

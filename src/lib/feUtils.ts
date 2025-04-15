@@ -24,9 +24,9 @@ export class FeUtils {
             await this._page.locator(selector).nth(0).click()
         })
     }
-     protected async _clickByLabelAndText(selector: string, text: string){
+     protected async _clickByLabelAndText(label: string, text: string){
         await this._test.step("Click by label and text", async() => {
-            await this._page.getByLabel(selector).getByText(text).click()
+            await this._page.getByLabel(label).getByText(text).click()
         })
      }
 
@@ -36,9 +36,21 @@ export class FeUtils {
         })
      }
 
-    protected async _fillBySelector(selector:string, value: string | number){
+    protected async _clickByText(text: string){
+        await this._test.step('Click by text', async() => {
+            await this._page.getByText(text).click()
+        })
+    }
+
+    protected async _fillBySelector(selector: string, value: string | number){
         await this._test.step('Fill value by selector', async () => {
             await this._page.locator(selector).nth(0).fill(value.toString())
+        })
+    }
+
+    protected async _fillByRole(role:any, name: string, message: string){
+        await this._test.step('Fill value by role', async() => {
+            await this._page.getByRole(role, {name: name}).fill(message)
         })
     }
 

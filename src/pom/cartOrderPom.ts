@@ -14,47 +14,32 @@ export class CartOrderPom extends FeUtils{
     }
 
     public async displayCart(){
-        await this._test.step('Display cart', async() => {
-            await this._page.getByRole('link', { name: cartOrderSel.CART, exact:true }).click()
-            await expect(this._page).toHaveURL(url)
-        })
+        await this._clickByRole('link',cartOrderSel.CART)
+        await expect(this._page).toHaveURL(url)
     }
 
     public async addItemToCart(){
-        await this._test.step('Add item to cart', async() => {
-            await this._page.getByText(cartOrderSel.ADDTOCART_BUTTON).first().click()
-        })
+        await this._clickByText(cartOrderSel.ADDTOCART_BUTTON)
     }
 
     public async deleteItemFromCart(){
-        await this._test.step('Delete of an item from cart', async() => {
-            await this._page.getByText(cartOrderSel.DELETE_BUTTON).first().click()
-        })
+        await this._clickByText(cartOrderSel.DELETE_BUTTON)
     }
 
     public async displayPlaceOrderForm(){
-        await this._test.step('Displazy place order form', async() => {
-            await this._clickBySelector(cartOrderSel.PLACEORDER_BUTTON)
-        })
+        await this._clickBySelector(cartOrderSel.PLACEORDER_BUTTON)
     }
 
     public async fillName(name:string){
-        await this._test.step('Fill name in place order form', async() => {
-            await this._fillBySelector(cartOrderSel.NAME_FIELD, name)
-        })
+        await this._fillBySelector(cartOrderSel.NAME_FIELD, name)
     }
 
     public async fillCreditCard(card: string | number){
-        await this._test.step('Fill credit card number in place order form', async() => {
-            await this._fillBySelector(cartOrderSel.CREDITCARD_FIELD, card)
-        })
+        await this._fillBySelector(cartOrderSel.CREDITCARD_FIELD, card)
     }
 
     public async clickPurchaseButton(){
-        await this._test.step('Click the purchase button in place order form', async() => {
-            await this._page.getByRole('button', { name: cartOrderSel.PURCHASE_BUTTON }).click()
-            await this._page.pause()
-        })
+        await this._clickByRole('button', cartOrderSel.PURCHASE_BUTTON)
     }
 
     //pridat funkce na overeni zobrazeni spravne zpravy v modalnim okne prohlizece

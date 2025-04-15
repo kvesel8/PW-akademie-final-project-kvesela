@@ -12,9 +12,7 @@ export class AboutUsPom extends FeUtils{
     }
 
     public async displayAboutUs(){
-        await this._test.step('Display About Us modal', async() => {
-            await this._page.getByRole('link', { name: `${aboutUsSel.ABOUTUS_MODAL}` }).click()
-        })
+        await this._clickByRole('link', aboutUsSel.ABOUTUS_MODAL)
     }
 
     public async clickCloseButton(){

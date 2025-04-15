@@ -42,14 +42,10 @@ export class HomePagePom extends FeUtils {
   } 
 
   public async pageDialogOn(){
-    await this._test.step('Page dialog On', async() => {
        await this._startListenPageDialog()
-    })
 }
 
   public async pageDialogOff(){
-    await this._test.step('Page dialog Off', async() => {
         await this._endListenPageDialog()
-    })
   }
 }
