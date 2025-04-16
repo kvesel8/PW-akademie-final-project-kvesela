@@ -1,4 +1,4 @@
-import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, APIRequestContext, expect} from '@playwright/test'
+import { TestType, PlaywrightTestArgs, PlaywrightTestOptions, PlaywrightWorkerArgs, PlaywrightWorkerOptions, APIRequestContext} from '@playwright/test'
 import { RespBodyType } from '../../src/types/be/respBodyType'
 import { BeUtils } from '../../src/lib/beUtils'
 import { TestConfigType } from '../../src/types/fe/globalTypes'
@@ -22,56 +22,47 @@ export class UsersSom extends BeUtils{
     }
 
     public async getListOfAllUsers(){
-        await this._test.step('Get list of all users with', async() => {
-            const res = await this._httpGet(`${this._testConfig.apiEndpoint}/v1/Users`)  
+        const res = await this._httpGet(`${this._testConfig.apiEndpoint}/v1/Users`)  
             
-            resBodyBuffer = await res.body()
-            resBodyBufferToString = resBodyBuffer.toString()
+        resBodyBuffer = await res.body()
+        resBodyBufferToString = resBodyBuffer.toString()
 
-            if(resBodyBuffer && resBodyBufferToString.trim()){
-                try {
-                    resBody = JSON.parse(resBodyBufferToString)
-                } catch (error) {
-                    console.error(resBodyBufferToString);                    
-                }
-            } 
-            console.log(resBody)            
-        })
+        if(resBodyBuffer && resBodyBufferToString.trim()){
+            try {
+                resBody = JSON.parse(resBodyBufferToString)
+            } catch (error) {
+                console.error(resBodyBufferToString);                    
+            }
+        } 
+        console.log(resBody)            
     }
 
     public async createUser(data:Object){
-        await this._test.step('Create a new user', async() => {
-            await this._httpPost(`${this._testConfig.apiEndpoint}/v1/Users`, {data:data})
-        })
+        await this._httpPost(`${this._testConfig.apiEndpoint}/v1/Users`, {data:data})
     }
 
     public async getUserById(id: string | number){
-        await this._test.step('Get user by id', async() => {
-            const res = await this._httpGet(`${this._testConfig.apiEndpoint}/v1/Users/${id.toString()}`)
+        const res = await this._httpGet(`${this._testConfig.apiEndpoint}/v1/Users/${id.toString()}`)
 
-            resBodyBuffer = await res.body()
-            resBodyBufferToString = resBodyBuffer.toString()
+        resBodyBuffer = await res.body()
+        resBodyBufferToString = resBodyBuffer.toString()
 
-            if(resBodyBuffer && resBodyBufferToString.trim()){
-                try {
-                    resBody = JSON.parse(resBodyBufferToString)
-                } catch (error) {
-                    console.error(resBodyBufferToString)
-                }
+        if(resBodyBuffer && resBodyBufferToString.trim()){
+            try {
+                resBody = JSON.parse(resBodyBufferToString)
+            } catch (error) {
+                console.error(resBodyBufferToString)
             }
-            console.log(resBody)
-        })
+        }
+        console.log(resBody)
     }
 
     public async updateUser(id: string | number, data: string | Buffer | Serializable ){
-        await this._test.step("Update user by id", async() =>{
-            const patchRes = await this._httpPut(`${this._testConfig.apiEndpoint}/v1/Users/${id.toString()}`, {data:data})
-        })
+        await this._httpPut(`${this._testConfig.apiEndpoint}/v1/Users/${id.toString()}`, {data:data})
+        
     }
 
-    public async deleteUser(id: string | number){
-        await this._test.step('Delete user by id', async() => {
-            const deleteRes = await this._httpDelete(`${this._testConfig.apiEndpoint}/v1/Users/${id.toString()}`)
-        })
+    public async deleteUser(id: string | number){        
+        const deleteRes = await this._httpDelete(`${this._testConfig.apiEndpoint}/v1/Users/${id.toString()}`)
     }
 }
