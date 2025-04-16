@@ -63,6 +63,6 @@ export class UsersSom extends BeUtils{
     }
 
     public async deleteUser(id: string | number){        
-        const deleteRes = await this._httpDelete(`${this._testConfig.apiEndpoint}/v1/Users/${id.toString()}`)
+        await this._httpDelete(`${this._testConfig.apiEndpoint}/v1/Users/${id.toString()}`)
     }
 }
